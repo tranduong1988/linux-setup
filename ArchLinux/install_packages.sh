@@ -4,6 +4,12 @@ source utils.sh
 # edit pacman.conf
 find_and_replace "#ParallelDownloads" "ParallelDownloads" /etc/pacman.conf
 
+#install yay
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+cd ..
+
 sudo pacman -S --noconfirm noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
 sudo pacman -S --noconfirm git
 sudo pacman -S --noconfirm 7zip
