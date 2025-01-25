@@ -34,6 +34,7 @@ sudo pacman -S --noconfirm inotify-tools
 yay -S --noconfirm --needed timeshift-autosnap
 yay -S --noconfirm --needed ulauncher
 yay -S --noconfirm --needed visual-studio-code-bin
+yay -S --noconfirm --needed google-chrome
 
 # pyenv, nvm, goenv, starship
 echo "Installing NVM..."
