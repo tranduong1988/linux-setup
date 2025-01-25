@@ -1,0 +1,10 @@
+[Unit]
+Description=%i cache memory cache
+
+[Install]
+WantedBy=default.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=%h/.local/bin/cache2ram.sh %i

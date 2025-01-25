@@ -1,0 +1,10 @@
+[Unit]
+Description=%i profile memory cache
+
+[Install]
+WantedBy=default.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=%h/.local/bin/browser-sync.sh %i
