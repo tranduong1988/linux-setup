@@ -18,6 +18,8 @@ cp -r .bash_alias ~/
 add_text_to_file "
 source ~/.bash_alias" ~/.bashrc
 
+cp -r .config ~/
+
 
 # set vm.swappiness=10
 add_text_to_file "
