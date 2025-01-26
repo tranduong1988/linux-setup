@@ -1,3 +1,4 @@
+
 add_text_to_file() {
     local text_to_add="$1"   # Text to add
     local target_file="$2"   # File to modify
@@ -46,4 +47,28 @@ find_and_replace() {
     # Sử dụng sed để thay thế
     sudo sed -i "s|$find_text|$replace_text|g" "$file"
     echo "Replaced \"$find_text\" by \"$replace_text\" in file $file."
+}
+
+add_swapfile() {
+    local swapsize="$1"
+
+    # set swapfile
+    sudo swapoff -a
+
+    sudo rm /swapfile
+
+    sudo fallocate -l "$swapsize" /swapfile
+
+    # sudo dd if=/dev/zero of=/swapfile bs=1M count=4096
+
+    sudo chmod 600 /swapfile
+
+    sudo mkswap /swapfile
+
+    sudo swapon /swapfile
+
+    add_text_to_file "
+/swapfile none swap sw 0 0" /etc/fstab
+
+    sudo swapon --show
 }

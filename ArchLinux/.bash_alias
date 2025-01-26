@@ -1,0 +1,108 @@
+
+pacman() {
+    case "$1" in
+        "install")
+            shift
+            command sudo pacman -S "$@"
+            ;;
+        "remove")
+            shift
+            command sudo pacman -R "$@"
+            ;;
+        "purge")
+            shift
+            command sudo pacman -Rns "$@"
+            ;;
+        "upgrade")
+            shift
+            command sudo pacman -Syu "$@"
+            ;;
+        "update")
+            shift
+            command sudo pacman -Sy "$@"
+            ;;
+        "search")
+            shift
+            command sudo pacman -Ss "$@"
+            ;;
+        "show")
+            shift
+            command sudo pacman -Si "$@"
+            ;;
+        "clean")
+            shift
+            command sudo pacman -Scc "$@"
+            ;;
+        "list-installed")
+            shift
+            command sudo pacman -Qe "$@"
+            ;;
+        *)
+            command sudo pacman "$@"
+            ;;
+    esac
+}
+
+yay() {
+    case "$1" in
+        "install")
+            shift
+            command sudo yay -S "$@"
+            ;;
+        "remove")
+            shift
+            command sudo yay -R "$@"
+            ;;
+        "purge")
+            shift
+            command sudo yay -Rns "$@"
+            ;;
+        "upgrade")
+            shift
+            command sudo yay -Syu "$@"
+            ;;
+        "update")
+            shift
+            command sudo yay -Sy "$@"
+            ;;
+        "search")
+            shift
+            command sudo yay -Ss "$@"
+            ;;
+        "show")
+            shift
+            command sudo yay -Si "$@"
+            ;;
+        "clean")
+            shift
+            command sudo yay -Scc "$@"
+            ;;
+        "list-installed")
+            shift
+            command sudo yay -Qe "$@"
+            ;;
+        "list-aur-installed")
+            shift
+            command sudo yay -Qm "$@"
+            ;;
+        *)
+            command sudo yay "$@"
+            ;;
+    esac
+}
+
+sudo() {
+    case "$1" in
+        "pacman")
+            shift
+            pacman "$@"
+            ;;
+        "yay")
+            shift
+            yay "$@"
+            ;;
+        *)
+            command sudo "$@"
+            ;;
+    esac
+}

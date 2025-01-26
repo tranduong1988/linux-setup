@@ -1,40 +1,25 @@
 #!/bin/bash
 
-# set swapfile
-sudo swapoff -a
+source utils.sh
 
-sudo rm /swapfile
+# add_swapfile 2G
 
-sudo fallocate -l 2G /swapfile
-
-# sudo dd if=/dev/zero of=/swapfile bs=1M count=4096
-
-sudo chmod 600 /swapfile
-
-sudo mkswap /swapfile
-
-sudo swapon /swapfile
-
-sudo sh -c 'echo "" >> /etc/fstab'
-sudo sh -c 'echo "/swapfile none swap sw 0 0" >> /etc/fstab'
-
-sudo swapon --show
-
-# end set swapfile
 
 # set cache to ram
+add_text_to_file "
+tmpfs /home/'$USER'/.cache/google-chrome tmpfs defaults,noatime,size=512M 0 0
+#tmpfs /home/'$USER'/.cache/microsoft-edge tmpfs defaults,noatime,size=512M 0 0
+tmpfs /home/'$USER'/.cache/yay tmpfs defaults,noatime,size=2G 0 0
+tmpfs /var/cache/pacman/pkg tmpfs defaults,noatime,size=2G 0 0" /etc/fstab
 sudo sh -c 'echo "" >> /etc/fstab'
-# sudo sh -c 'echo "tmpfs /tmp tmpfs defaults,noatime,size=1G 0 0" >> /etc/fstab'
-# sudo sh -c 'echo "tmpfs /var/tmp tmpfs defaults,noatime,size=1G 0 0" >> /etc/fstab'
-# sudo sh -c 'echo "tmpfs /var/log tmpfs defaults,noatime,size=500M 0 0" >> /etc/fstab'
-sudo sh -c 'echo "tmpfs /home/'$USER'/.cache/google-chrome tmpfs defaults,noatime,size=512M 0 0" >> /etc/fstab'
-sudo sh -c 'echo "tmpfs /home/'$USER'/.cache/microsoft-edge tmpfs defaults,noatime,size=512M 0 0" >> /etc/fstab'
 
-sudo sh -c 'echo "tmpfs /home/'$USER'/.cache/yay tmpfs defaults,noatime,size=2G 0 0" >> /etc/fstab'
-sudo sh -c 'echo "tmpfs /var/cache/pacman/pkg tmpfs defaults,noatime,size=2G 0 0" >> /etc/fstab'
-
+# set pacman and yay
+cp -r .bash_alias ~/
+add_text_to_file "
+source ~/.bash_alias" ~/.bashrc
 
 
 # set vm.swappiness=10
-sudo sh -c 'echo "" >> /etc/sysctl.conf'
-sudo sh -c 'echo "vm.swappiness=10" >> /etc/sysctl.conf'
+add_text_to_file "
+vm.swappiness=10" /etc/sysctl.conf
+
