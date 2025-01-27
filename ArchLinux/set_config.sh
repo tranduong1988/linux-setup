@@ -23,5 +23,5 @@ cp -r .config ~/
 
 # set vm.swappiness=10
 add_text_to_file "
-vm.swappiness=10" /etc/sysctl.conf
+vm.swappiness=10" /etc/sysctl.d/99-swappiness.conf
 
