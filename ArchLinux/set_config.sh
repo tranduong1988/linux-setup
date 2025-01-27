@@ -3,7 +3,7 @@
 source utils.sh
 
 # add_swapfile 2G
-
+find_and_replace "#ParallelDownloads" "ParallelDownloads" /etc/pacman.conf
 
 # set cache to ram
 add_text_to_file "

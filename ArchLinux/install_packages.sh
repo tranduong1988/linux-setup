@@ -2,7 +2,6 @@
 
 source utils.sh
 # edit pacman.conf
-find_and_replace "#ParallelDownloads" "ParallelDownloads" /etc/pacman.conf
 
 
 sudo pacman -S --noconfirm noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
