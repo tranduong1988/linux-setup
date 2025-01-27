@@ -7,14 +7,14 @@ source utils.sh
 
 # set cache to ram
 add_text_to_file "
-tmpfs /home/'$USER'/.cache/google-chrome tmpfs defaults,noatime,size=512M 0 0
-#tmpfs /home/'$USER'/.cache/microsoft-edge tmpfs defaults,noatime,size=512M 0 0
-tmpfs /home/'$USER'/.cache/yay tmpfs defaults,noatime,size=2G 0 0
+tmpfs '$HOME'/.cache/google-chrome tmpfs defaults,noatime,size=512M 0 0
+#tmpfs '$HOME'/.cache/microsoft-edge tmpfs defaults,noatime,size=512M 0 0
+tmpfs '$HOME'/.cache/yay tmpfs defaults,noatime,size=2G 0 0
 tmpfs /var/cache/pacman/pkg tmpfs defaults,noatime,size=2G 0 0" /etc/fstab
 sudo sh -c 'echo "" >> /etc/fstab'
 
-mkdir -p /home/'$USER'/.cache/yay
-mkdir -p /home/'$USER'/.cache/google-chrome
+mkdir -p $HOME/.cache/yay
+mkdir -p $HOME/.cache/google-chrome
 
 sudo mount -a
 
@@ -24,7 +24,13 @@ add_text_to_file "
 source ~/.bash_alias" ~/.bashrc
 
 cp -r .config ~/
-
+mkdir -p $HOME/Desktop
+mkdir -p $HOME/Downloads
+mkdir -p $HOME/Documents
+mkdir -p $HOME/Music
+mkdir -p $HOME/Pictures
+mkdir -p $HOME/Templates
+mkdir -p $HOME/Videos
 
 # set vm.swappiness=10
 sudo touch /etc/sysctl.d/99-swappiness.conf

@@ -55,7 +55,7 @@ eval \"\$(pyenv init -)\"" ~/.bashrc
 add_text_to_file "
 export GOENV_ROOT=\"\$HOME/.goenv\"
 export PATH=\"\$GOENV_ROOT/bin:\$PATH\"
-eval \"$(goenv init -)\"" ~/.bashrc
+eval \"\$(goenv init -)\"" ~/.bashrc
 
 # starship
 add_text_to_file "
