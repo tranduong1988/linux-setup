@@ -13,6 +13,11 @@ tmpfs /home/'$USER'/.cache/yay tmpfs defaults,noatime,size=2G 0 0
 tmpfs /var/cache/pacman/pkg tmpfs defaults,noatime,size=2G 0 0" /etc/fstab
 sudo sh -c 'echo "" >> /etc/fstab'
 
+mkdir -p /home/'$USER'/.cache/yay
+mkdir -p /home/'$USER'/.cache/google-chrome
+
+sudo mount -a
+
 # set pacman and yay
 cp -r .bash_alias ~/
 add_text_to_file "
