@@ -12,5 +12,3 @@ xfconf-query -c xfwm4 -p /general/theme -s "Nordic"
 xfconf-query -c xsettings -p /Gtk/FontName -s "Roboto Regular 10"
 xfconf-query -c xfwm4 -p /general/title_font -s "Roboto Bold 9"
 xfconf-query -c xfce4-terminal -p /font-name -s "0xProto Nerd Font Regular 12"
-
-gtk-update-icon-cache-f -t $HOME/.local/icons/candy-icons
