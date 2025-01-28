@@ -47,46 +47,46 @@ yay() {
     case "$1" in
         "install")
             shift
-            command sudo yay -S "$@"
+            command yay -S "$@"
             ;;
         "remove")
             shift
-            command sudo yay -R "$@"
+            command yay -R "$@"
             ;;
         "purge")
             shift
-            command sudo yay -Rns "$@"
+            command yay -Rns "$@"
             ;;
         "upgrade")
             shift
-            command sudo yay -Syu "$@"
+            command yay -Syu "$@"
             ;;
         "update")
             shift
-            command sudo yay -Sy "$@"
+            command yay -Sy "$@"
             ;;
         "search")
             shift
-            command sudo yay -Ss "$@"
+            command yay -Ss "$@"
             ;;
         "show")
             shift
-            command sudo yay -Si "$@"
+            command yay -Si "$@"
             ;;
         "clean")
             shift
-            command sudo yay -Scc "$@"
+            command yay -Scc "$@"
             ;;
         "list-installed")
             shift
-            command sudo yay -Qe "$@"
+            command yay -Qe "$@"
             ;;
         "list-aur-installed")
             shift
-            command sudo yay -Qm "$@"
+            command yay -Qm "$@"
             ;;
         *)
-            command sudo yay "$@"
+            command yay "$@"
             ;;
     esac
 }
