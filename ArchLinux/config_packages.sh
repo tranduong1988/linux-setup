@@ -1,3 +1,7 @@
+#!/bin/bash
+
+source utils.sh
+
 # add env
 # pyenv
 add_text_to_file "

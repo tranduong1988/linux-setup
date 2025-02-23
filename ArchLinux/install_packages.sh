@@ -1,9 +1,5 @@
 #!/bin/bash
 
-source utils.sh
-# edit pacman.conf
-
-
 sudo pacman -S --noconfirm noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
 sudo pacman -S --noconfirm git
 sudo pacman -S --noconfirm 7zip
