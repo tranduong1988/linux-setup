@@ -2,6 +2,9 @@
 
 source utils.sh
 
+# prevent created unwanted subvolumes in cachyOS
+sudo touch /etc/tmpfiles.d/{portables,systemd-nspawn}.conf
+
 # add_swapfile 2G
 find_and_replace "#ParallelDownloads" "ParallelDownloads" /etc/pacman.conf
 
@@ -13,7 +16,7 @@ tmpfs $HOME/.cache/yay tmpfs defaults,noatime,size=2G 0 0
 tmpfs /var/cache/pacman/pkg tmpfs defaults,noatime,size=2G 0 0" /etc/fstab
 sudo sh -c 'echo "" >> /etc/fstab'
 
-mkdir -p $HOME/.cache/yay
+mkdir -p $HOME/.cache/
 mkdir -p $HOME/.cache/google-chrome
 
 sudo mount -a
