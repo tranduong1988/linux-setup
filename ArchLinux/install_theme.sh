@@ -2,8 +2,8 @@
 sudo pacman -S --noconfirm ttf-roboto
 sudo pacman -S --noconfirm ttf-0xproto-nerd 
 
-yay -S --noconfirm candy-icons-git
-yay -S --noconfirm nordic-theme-git 
+paru -S --noconfirm candy-icons-git
+paru -S --noconfirm nordic-theme-git 
 
 xfconf-query -c xsettings -p /Net/ThemeName -s "Nordic"
 xfconf-query -c xsettings -p /Net/IconThemeName -s "candy-icons"
