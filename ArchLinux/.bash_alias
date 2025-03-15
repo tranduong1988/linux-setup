@@ -47,46 +47,46 @@ yay() {
     case "$1" in
         "install")
             shift
-            command yay -S "$@"
+            command paru -S "$@"
             ;;
         "remove")
             shift
-            command yay -R "$@"
+            command paru -R "$@"
             ;;
         "purge")
             shift
-            command yay -Rns "$@"
+            command paru -Rns "$@"
             ;;
         "upgrade")
             shift
-            command yay -Syu "$@"
+            command paru -Syu "$@"
             ;;
         "update")
             shift
-            command yay -Sy "$@"
+            command paru -Sy "$@"
             ;;
         "search")
             shift
-            command yay -Ss "$@"
+            command paru -Ss "$@"
             ;;
         "show")
             shift
-            command yay -Si "$@"
+            command paru -Si "$@"
             ;;
         "clean")
             shift
-            command yay -Scc "$@"
+            command paru -Scc "$@"
             ;;
         "list-installed")
             shift
-            command yay -Qe "$@"
+            command paru -Qe "$@"
             ;;
         "list-aur-installed")
             shift
-            command yay -Qm "$@"
+            command paru -Qm "$@"
             ;;
         *)
-            command yay "$@"
+            command paru "$@"
             ;;
     esac
 }
@@ -96,10 +96,6 @@ sudo() {
         "pacman")
             shift
             pacman "$@"
-            ;;
-        "yay")
-            shift
-            yay "$@"
             ;;
         *)
             command sudo "$@"
