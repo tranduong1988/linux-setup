@@ -51,9 +51,8 @@ sudo usermod -aG kvm $USER
 sudo virsh net-autostart default
 
 # edit file grub-btrfsd
-grub_btrfsd_file=$(sudo systemctl cat grub-btrfsd | head -n 1 | sed 's/^# //')
-find_and_replace "--syslog /.snapshots" "--syslog --timeshift-auto" $grub_btrfsd_file
-
 sudo systemctl enable grub-btrfsd
 sudo systemctl start grub-btrfsd
-
+grub_btrfsd_file=$(sudo systemctl cat grub-btrfsd | head -n 1 | sed 's/^# //')
+find_and_replace "--syslog /.snapshots" "--syslog --timeshift-auto" $grub_btrfsd_file
+sudo systemctl restart grub-btrfsd
