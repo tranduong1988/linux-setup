@@ -56,3 +56,8 @@ sudo systemctl start grub-btrfsd
 grub_btrfsd_file=$(sudo systemctl cat grub-btrfsd | head -n 1 | sed 's/^# //')
 find_and_replace "--syslog /.snapshots" "--syslog --timeshift-auto" $grub_btrfsd_file
 sudo systemctl restart grub-btrfsd
+
+# edit file timeshift-autosnap config
+timeshift_autosnap_file='/etc/timeshift-autosnap.conf'
+find_and_replace "updateGrub=true" "updateGrub=false" $timeshift_autosnap_file
+find_and_replace "maxSnapshots=3" "maxSnapshots=5" $timeshift_autosnap_file
