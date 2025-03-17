@@ -59,5 +59,5 @@ sudo systemctl restart grub-btrfsd
 
 # edit file timeshift-autosnap config
 timeshift_autosnap_file='/etc/timeshift-autosnap.conf'
-find_and_replace "updateGrub=true" "updateGrub=false" $timeshift_autosnap_file
+# find_and_replace "updateGrub=true" "updateGrub=false" $timeshift_autosnap_file
 find_and_replace "maxSnapshots=3" "maxSnapshots=5" $timeshift_autosnap_file
