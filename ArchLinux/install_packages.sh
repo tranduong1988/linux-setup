@@ -21,7 +21,6 @@ sudo pacman -S --noconfirm grub-btrfs
 sudo pacman -S --noconfirm inotify-tools
 
 # aur package
-paru -S --noconfirm --needed grub-hook
 paru -S --noconfirm --needed timeshift-autosnap
 paru -S --noconfirm --needed ulauncher
 paru -S --noconfirm --needed visual-studio-code-bin
