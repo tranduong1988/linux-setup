@@ -3,6 +3,8 @@
 source utils.sh
 
 # prevent created unwanted subvolumes in cachyOS
+sudo btrfs sub delete /var/lib/machines
+sudo btrfs sub delete /var/lib/portables
 sudo touch /etc/tmpfiles.d/{portables,systemd-nspawn}.conf
 
 # add_swapfile 2G
