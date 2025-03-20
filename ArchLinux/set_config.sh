@@ -14,7 +14,7 @@ find_and_replace "#ParallelDownloads" "ParallelDownloads" /etc/pacman.conf
 add_text_to_file "
 tmpfs $HOME/.cache/google-chrome tmpfs defaults,noatime,size=512M 0 0
 #tmpfs $HOME/.cache/microsoft-edge tmpfs defaults,noatime,size=512M 0 0
-tmpfs $HOME/.cache/yay tmpfs defaults,noatime,size=2G 0 0
+tmpfs $HOME/.cache/paru tmpfs defaults,noatime,size=2G 0 0
 tmpfs /var/cache/pacman/pkg tmpfs defaults,noatime,size=2G 0 0" /etc/fstab
 sudo sh -c 'echo "" >> /etc/fstab'
 
