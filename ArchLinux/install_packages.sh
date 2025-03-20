@@ -14,7 +14,7 @@ sudo pacman -S --noconfirm qbittorrent
 sudo pacman -S --noconfirm okular
 sudo pacman -S --noconfirm tk
 sudo pacman -S --noconfirm fcitx5 fcitx5-configtool fcitx5-gtk fcitx5-qt fcitx5-bamboo
-sudo pacman -S --noconfirm virt-manager qemu-desktop libvirt edk2-ovmf dnsmasq vde2 bridge-utils iptables-nft dmidecode
+yes | sudo pacman -S virt-manager qemu-desktop libvirt edk2-ovmf dnsmasq vde2 bridge-utils iptables-nft dmidecode
 sudo pacman -S --noconfirm docker
 sudo pacman -S --noconfirm timeshift
 sudo pacman -S --noconfirm grub-btrfs 
