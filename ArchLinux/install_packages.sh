@@ -21,10 +21,10 @@ sudo pacman -S --noconfirm grub-btrfs
 sudo pacman -S --noconfirm inotify-tools
 
 # aur package
-paru -S --noconfirm --needed timeshift-autosnap
-paru -S --noconfirm --needed ulauncher
-paru -S --noconfirm --needed visual-studio-code-bin
-paru -S --noconfirm --needed google-chrome
+yay -S --noconfirm --needed timeshift-autosnap
+yay -S --noconfirm --needed ulauncher
+yay -S --noconfirm --needed visual-studio-code-bin
+yay -S --noconfirm --needed google-chrome
 
 # pyenv, nvm, goenv, starship
 echo "Installing NVM..."
