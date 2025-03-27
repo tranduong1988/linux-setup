@@ -31,6 +31,7 @@ yay -S --noconfirm --needed timeshift-autosnap
 yay -S --noconfirm --needed ulauncher
 yay -S --noconfirm --needed visual-studio-code-bin
 yay -S --noconfirm --needed google-chrome
+yay -S --noconfirm --needed starship
 
 # pyenv, nvm, goenv, starship
 echo "Installing NVM..."
@@ -42,6 +43,6 @@ git clone https://github.com/go-nv/goenv.git ~/.goenv
 echo "Installing pyenv..."
 curl https://pyenv.run | bash
 
-echo "Installing starship..."
-curl -sS https://starship.rs/install.sh | sh
+# echo "Installing starship..."
+# curl -sS https://starship.rs/install.sh | sh
 
