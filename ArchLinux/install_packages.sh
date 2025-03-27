@@ -21,6 +21,12 @@ sudo pacman -S --noconfirm grub-btrfs
 sudo pacman -S --noconfirm inotify-tools
 
 # aur package
+if ! command -v yay &>/dev/null; then
+    echo "Command 'yay' not found. Assigning yay=paru."
+    yay() {
+        paru "$@"
+    }
+fi
 yay -S --noconfirm --needed timeshift-autosnap
 yay -S --noconfirm --needed ulauncher
 yay -S --noconfirm --needed visual-studio-code-bin
