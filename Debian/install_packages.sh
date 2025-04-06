@@ -73,6 +73,10 @@ cd grub-btrfs
 sudo make install
 cd ..
 
+cd timeshift-autosnap
+sudo make install
+cd ..
+
 echo "Installing starship..."
 curl -sS https://starship.rs/install.sh | sh
 
