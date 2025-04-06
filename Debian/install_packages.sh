@@ -18,6 +18,7 @@ sudo apt install -y inotify-tools
 sudo apt install -y zram-tools
 sudo apt install -y build-essential
 sudo apt install -y fcitx5-bamboo
+sudo apt install -y systemd-zram-generator 
 sudo apt install -y --no-install-recommends texstudio
 
 
