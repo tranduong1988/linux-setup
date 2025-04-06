@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sudo apt install -y fonts-noto fonts-noto-cjk fonts-noto-color-emoji fonts-noto-extra
 sudo apt install -y git
 sudo apt install -y curl
 sudo apt install -y 7zip
