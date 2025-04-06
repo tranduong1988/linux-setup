@@ -1,6 +1,7 @@
 #!/bin/bash
 
 sudo apt install -y git
+sudo apt install -y curl
 sudo apt install -y 7zip
 sudo apt install -y unrar
 sudo apt install -y unzip

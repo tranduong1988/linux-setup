@@ -40,10 +40,10 @@ find_and_replace "--syslog /.snapshots" "--syslog --timeshift-auto" $grub_btrfsd
 sudo systemctl restart grub-btrfsd
 
 # KVM service
-sudo systemctl enable --now libvirtd.service
-sudo usermod -aG libvirt $USER
-sudo usermod -aG kvm $USER
-sudo virsh net-autostart default
+# sudo systemctl enable --now libvirtd.service
+# sudo usermod -aG libvirt $USER
+# sudo usermod -aG kvm $USER
+# sudo virsh net-autostart default
 
 # Enable services
 DOCKER_IMAGES_PATH='/home/'$USER'/.local/share/docker/images'

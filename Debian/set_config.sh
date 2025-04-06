@@ -15,7 +15,7 @@ sudo sh -c 'echo "" >> /etc/fstab'
 
 mkdir -p $HOME/.cache/google-chrome
 
-sudo mount -a
+# sudo mount -a
 
 # set vm.swappiness=10
 # sudo touch /etc/sysctl.conf
