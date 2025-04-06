@@ -2,6 +2,9 @@
 
 source utils.sh
 
+# prevent created unwanted subvolumes in debian
+sudo touch /etc/tmpfiles.d/{portables,systemd-nspawn}.conf
+
 #
 find_and_replace "#greeter-hide-users=false" "greeter-hide-users=false" /etc/lightdm/lightdm.conf
 find_and_replace "#greeter-show-manual-login=false" "greeter-show-manual-login=false" /etc/lightdm/lightdm.conf
