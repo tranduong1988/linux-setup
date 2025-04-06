@@ -15,7 +15,7 @@ sudo apt install -y qbittorrent
 sudo apt install -y timeshift
 sudo apt install -y inotify-tools
 sudo apt install -y zram-tools
-
+sudo apt install -y build-essential
 sudo apt install -y --no-install-recommends texstudio
 
 
