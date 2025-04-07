@@ -3,8 +3,10 @@
 source utils.sh
 
 #config zram
-add_text_to_file "zram-size=ram*0.5
-compression-algorithm=zstd" /etc/systemd/zram-generator.conf
+add_text_to_file "zram-size = ram*0.5
+compression-algorithm = zstd
+swap-priority = 100
+fs-type = swap" /etc/systemd/zram-generator.conf
 
 # add env
 # pyenv
