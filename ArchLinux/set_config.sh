@@ -37,6 +37,8 @@ mkdir -p $HOME/Pictures
 mkdir -p $HOME/Templates
 mkdir -p $HOME/Videos
 
+sudo cp pacman-db-unlock.service /etc/systemd/system/
+sudo systemctl enable pacman-db-unlock
 # set vm.swappiness=10
 sudo touch /etc/sysctl.d/99-swappiness.conf
 add_text_to_file "

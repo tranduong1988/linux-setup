@@ -1,0 +1,11 @@
+[Unit]
+Description=Remove pacman db lock
+Before=pacman-init.service
+ConditionPathExists=/var/lib/pacman/db.lck
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/rm -f /var/lib/pacman/db.lck
+
+[Install]
+WantedBy=multi-user.target
