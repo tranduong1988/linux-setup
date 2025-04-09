@@ -3,17 +3,22 @@
 source utils.sh
 
 # add env
-# pyenv
-add_text_to_file "
-export PYENV_ROOT=\"\$HOME/.pyenv\"
-[[ -d \$PYENV_ROOT/bin ]] && export PATH=\"\$PYENV_ROOT/bin:\$PATH\"
-eval \"\$(pyenv init -)\"" ~/.bashrc
 
-# goenv
+# # pyenv
+# add_text_to_file "
+# export PYENV_ROOT=\"\$HOME/.pyenv\"
+# [[ -d \$PYENV_ROOT/bin ]] && export PATH=\"\$PYENV_ROOT/bin:\$PATH\"
+# eval \"\$(pyenv init -)\"" ~/.bashrc
+
+# # goenv
+# add_text_to_file "
+# export GOENV_ROOT=\"\$HOME/.goenv\"
+# export PATH=\"\$GOENV_ROOT/bin:\$PATH\"
+# eval \"\$(goenv init -)\"" ~/.bashrc
+
+# nvm 
 add_text_to_file "
-export GOENV_ROOT=\"\$HOME/.goenv\"
-export PATH=\"\$GOENV_ROOT/bin:\$PATH\"
-eval \"\$(goenv init -)\"" ~/.bashrc
+. /usr/share/nvm/init-nvm.sh" ~/.bashrc
 
 # starship
 add_text_to_file "

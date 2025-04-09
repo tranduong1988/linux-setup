@@ -19,6 +19,8 @@ sudo pacman -S --noconfirm docker
 sudo pacman -S --noconfirm timeshift
 sudo pacman -S --noconfirm grub-btrfs 
 sudo pacman -S --noconfirm inotify-tools
+sudo pacman -S --noconfirm nvm
+sudo pacman -S --noconfirm pyenv
 
 # aur package
 if ! command -v yay &>/dev/null; then
@@ -31,17 +33,18 @@ yay -S --noconfirm --needed timeshift-autosnap
 yay -S --noconfirm --needed ulauncher
 yay -S --noconfirm --needed visual-studio-code-bin
 yay -S --noconfirm --needed google-chrome
+yay -S --noconfirm --needed goenv
 yay -S --noconfirm --needed starship
 
 # pyenv, nvm, goenv, starship
-echo "Installing NVM..."
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+# echo "Installing NVM..."
+# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 
-echo "Installing goenv..."
-git clone https://github.com/go-nv/goenv.git ~/.goenv
+# echo "Installing goenv..."
+# git clone https://github.com/go-nv/goenv.git ~/.goenv
 
-echo "Installing pyenv..."
-curl https://pyenv.run | bash
+# echo "Installing pyenv..."
+# curl https://pyenv.run | bash
 
 # echo "Installing starship..."
 # curl -sS https://starship.rs/install.sh | sh
