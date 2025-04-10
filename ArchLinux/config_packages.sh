@@ -9,16 +9,23 @@ source utils.sh
 # export PYENV_ROOT=\"\$HOME/.pyenv\"
 # [[ -d \$PYENV_ROOT/bin ]] && export PATH=\"\$PYENV_ROOT/bin:\$PATH\"
 # eval \"\$(pyenv init -)\"" ~/.bashrc
+add_text_to_file "
+eval \"\$(pyenv init -)\"" ~/.bashrc
 
 # # goenv
 # add_text_to_file "
 # export GOENV_ROOT=\"\$HOME/.goenv\"
 # export PATH=\"\$GOENV_ROOT/bin:\$PATH\"
 # eval \"\$(goenv init -)\"" ~/.bashrc
+add_text_to_file "
+eval \"\$(goenv init -)\"" ~/.bashrc
 
 # nvm 
 add_text_to_file "
-. /usr/share/nvm/init-nvm.sh" ~/.bashrc
+[ -z \"$NVM_DIR\" ] && export NVM_DIR=\"\$HOME/.nvm\"
+source /usr/share/nvm/nvm.sh
+source /usr/share/nvm/bash_completion
+source /usr/share/nvm/install-nvm-exec" ~/.bashrc
 
 # starship
 add_text_to_file "
