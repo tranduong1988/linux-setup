@@ -11,7 +11,7 @@ sudo pacman -S --noconfirm btop
 sudo pacman -S --noconfirm tlp
 sudo pacman -S --noconfirm vlc
 sudo pacman -S --noconfirm qbittorrent
-sudo pacman -S --noconfirm okular
+sudo pacman -S --noconfirm atril
 sudo pacman -S --noconfirm tk
 sudo pacman -S --noconfirm fcitx5 fcitx5-configtool fcitx5-gtk fcitx5-qt fcitx5-bamboo
 yes | sudo pacman -S virt-manager qemu-desktop libvirt edk2-ovmf dnsmasq vde2 bridge-utils iptables-nft dmidecode
@@ -21,6 +21,7 @@ sudo pacman -S --noconfirm grub-btrfs
 sudo pacman -S --noconfirm inotify-tools
 sudo pacman -S --noconfirm nvm
 sudo pacman -S --noconfirm pyenv
+sudo pacman -S --noconfirm texstudio
 
 # aur package
 if ! command -v yay &>/dev/null; then
