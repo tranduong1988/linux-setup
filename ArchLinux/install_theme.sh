@@ -3,7 +3,8 @@ sudo pacman -S --noconfirm ttf-roboto
 sudo pacman -S --noconfirm ttf-0xproto-nerd 
 
 paru -S --noconfirm qogir-icon-theme
-paru -S --noconfirm materia-gtk-theme 
+paru -S --noconfirm materia-gtk-theme
+paru -S --noconfirm orchis-theme
 
 xfconf-query -c xsettings -p /Net/ThemeName -s "Materia-dark"
 xfconf-query -c xsettings -p /Net/IconThemeName -s "Qogir-dark"
