@@ -2,6 +2,9 @@
 
 source utils.sh
 
+# set key shortcut for rofi
+xfconf-query -c xfce4-keyboard-shortcuts -p "/commands/custom/<Super>m" -t string -s "rofi -show drun -show-icons" --create
+
 #config zram
 add_text_to_file "zram-size = ram*0.5
 compression-algorithm = zstd

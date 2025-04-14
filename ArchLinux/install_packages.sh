@@ -21,6 +21,7 @@ sudo pacman -S --noconfirm grub-btrfs
 sudo pacman -S --noconfirm inotify-tools
 sudo pacman -S --noconfirm nvm
 sudo pacman -S --noconfirm pyenv
+sudo pacman -S --noconfirm rofi
 sudo pacman -S --noconfirm texstudio
 
 # aur package
@@ -31,7 +32,6 @@ if ! command -v yay &>/dev/null; then
     }
 fi
 yay -S --noconfirm --needed timeshift-autosnap
-yay -S --noconfirm --needed ulauncher
 yay -S --noconfirm --needed visual-studio-code-bin
 yay -S --noconfirm --needed google-chrome
 yay -S --noconfirm --needed goenv

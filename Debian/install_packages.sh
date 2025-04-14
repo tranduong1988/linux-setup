@@ -21,6 +21,7 @@ sudo apt install -y build-essential
 sudo apt install -y fcitx5-bamboo
 sudo apt install -y systemd-zram-generator 
 sudo apt install -y --no-install-recommends texstudio
+sudo apt install -y rofi
 
 
 
@@ -59,16 +60,7 @@ echo "Install Docker...."
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 
-# Cài đặt ulauncher
-echo "Installing ulauncher... "
-sudo apt update && sudo apt install -y gnupg
-gpg --keyserver keyserver.ubuntu.com --recv 0xfaf1020699503176
-gpg --export 0xfaf1020699503176 | sudo tee /usr/share/keyrings/ulauncher-archive-keyring.gpg > /dev/null
-echo "deb [signed-by=/usr/share/keyrings/ulauncher-archive-keyring.gpg] \
-          http://ppa.launchpad.net/agornostal/ulauncher/ubuntu jammy main" \
-          | sudo tee /etc/apt/sources.list.d/ulauncher-jammy.list
-sudo apt update && sudo apt install -y ulauncher
-
+# grub-btrfs
 git clone https://github.com/Antynea/grub-btrfs.git
 cd grub-btrfs
 sudo make install

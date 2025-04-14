@@ -2,6 +2,9 @@
 
 source utils.sh
 
+# set key shortcut for rofi
+xfconf-query -c xfce4-keyboard-shortcuts -p "/commands/custom/<Super>m" -t string -s "rofi -show drun -show-icons" --create
+
 # add env
 
 # # pyenv
