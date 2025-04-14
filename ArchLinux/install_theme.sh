@@ -2,9 +2,16 @@
 sudo pacman -S --noconfirm ttf-roboto
 sudo pacman -S --noconfirm ttf-0xproto-nerd 
 
-paru -S --noconfirm qogir-icon-theme
-paru -S --noconfirm materia-gtk-theme
-paru -S --noconfirm orchis-theme
+if ! command -v yay &>/dev/null; then
+    echo "Command 'yay' not found. Assigning yay=paru."
+    yay() {
+        paru "$@"
+    }
+fi
+
+yay -S --noconfirm qogir-icon-theme
+yay -S --noconfirm materia-gtk-theme
+yay -S --noconfirm orchis-theme
 
 xfconf-query -c xsettings -p /Net/ThemeName -s "Materia-dark"
 xfconf-query -c xsettings -p /Net/IconThemeName -s "Qogir-dark"
