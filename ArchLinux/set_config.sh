@@ -23,7 +23,7 @@ tmpfs $HOME/.cache/$yay tmpfs defaults,noatime,size=2G 0 0
 tmpfs /var/cache/pacman/pkg tmpfs defaults,noatime,size=2G 0 0" /etc/fstab
 sudo sh -c 'echo "" >> /etc/fstab'
 
-mkdir -p $HOME/.cache/
+mkdir -p $HOME/.cache/$yay
 mkdir -p $HOME/.cache/google-chrome
 
 sudo mount -a
