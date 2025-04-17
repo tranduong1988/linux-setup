@@ -1,6 +1,10 @@
 #!/bin/bash
 
-sudo pacman -S --noconfirm noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
+sudo pacman -S --noconfirm noto-fonts  
+sudo pacman -S --noconfirm noto-fonts-cjk 
+sudo pacman -S --noconfirm noto-fonts-emoji
+sudo pacman -S --noconfirm noto-fonts-extra
+
 sudo pacman -S --noconfirm git
 sudo pacman -S --noconfirm 7zip
 sudo pacman -S --noconfirm unrar
