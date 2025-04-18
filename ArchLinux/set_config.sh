@@ -11,7 +11,7 @@ sudo touch /etc/tmpfiles.d/{portables,systemd-nspawn}.conf
 find_and_replace "#ParallelDownloads" "ParallelDownloads" /etc/pacman.conf
 
 # set cache to ram
-local yay="yay"
+yay="yay"
 if ! command -v yay &>/dev/null; then
     yay="paru"
 fi
