@@ -2,7 +2,7 @@ chạy sbat:
 
 https://wiki.archlinux.org/title/GRUB
 
-grub-install --target=x86_64-efi --efi-directory=esp --sbat /usr/share/grub/sbat.csv
+grub-install --target=x86_64-efi --efi-directory=esp --bootloader-id=BOOT --sbat /usr/share/grub/sbat.csv
 
 
 check sbat:
