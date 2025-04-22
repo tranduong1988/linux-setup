@@ -1,9 +1,8 @@
 chạy sbat:
 
-objcopy \
-  --add-section .sbat=sbat.csv \
-  --set-section-alignment .sbat=512 \
-  grubx64.efi
+https://wiki.archlinux.org/title/GRUB
+
+grub-install --target=x86_64-efi --efi-directory=esp --sbat /usr/share/grub/sbat.csv
 
 
 check sbat:
@@ -11,6 +10,7 @@ check sbat:
 objdump -j .sbat -s /path/to/binary.efi
 
 
+https://wiki.archlinux.org/title/Unified_Extensible_Firmware_Interface/Secure_Boot
 2. SET UP shim:
 install shim-signed (AUR)
 
