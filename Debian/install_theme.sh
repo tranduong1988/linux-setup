@@ -1,3 +1,4 @@
+#!/bin/bash
 
 mkdir -p Qogir-icon
 curl -L https://github.com/vinceliuice/Qogir-icon-theme/archive/refs/tags/2025-02-15.tar.gz | tar -xzf - -C Qogir-icon --strip-components=1
