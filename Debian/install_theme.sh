@@ -1,14 +1,14 @@
 
-mkdir -p Qogir
+mkdir -p Qogir-icon
 curl -L https://github.com/vinceliuice/Qogir-icon-theme/archive/refs/tags/2025-02-15.tar.gz | tar -xzf - -C Qogir-icon --strip-components=1
 cd Qogir-icon
-./install
+./install.sh
 cd ..
 
 mkdir -p Orchis-theme
 curl -L https://github.com/vinceliuice/Orchis-theme/archive/refs/tags/2024-11-03.tar.gz  | tar -xzf - -C Orchis-theme --strip-components=1
 cd Orchis-theme
-./install
+./install.sh
 cd ..
 
 
