@@ -13,9 +13,6 @@ sudo apt install -y tlp
 sudo apt install -y vlc
 sudo apt install -y qbittorrent
 sudo apt install -y qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager
-sudo apt install -y qbittorrent
-sudo apt install -y timeshift
-sudo apt install -y inotify-tools
 sudo apt install -y zram-tools
 sudo apt install -y build-essential
 sudo apt install -y fcitx5-bamboo
@@ -60,15 +57,7 @@ echo "Install Docker...."
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 
-# grub-btrfs
-# git clone https://github.com/Antynea/grub-btrfs.git
-# cd grub-btrfs
-# sudo make install
-# cd ..
 
-# cd timeshift-autosnap
-# sudo make install
-# cd ..
 
 echo "Installing starship..."
 curl -sS https://starship.rs/install.sh | sh
