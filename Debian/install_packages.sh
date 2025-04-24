@@ -61,14 +61,14 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plug
 
 
 # grub-btrfs
-git clone https://github.com/Antynea/grub-btrfs.git
-cd grub-btrfs
-sudo make install
-cd ..
+# git clone https://github.com/Antynea/grub-btrfs.git
+# cd grub-btrfs
+# sudo make install
+# cd ..
 
-cd timeshift-autosnap
-sudo make install
-cd ..
+# cd timeshift-autosnap
+# sudo make install
+# cd ..
 
 echo "Installing starship..."
 curl -sS https://starship.rs/install.sh | sh
