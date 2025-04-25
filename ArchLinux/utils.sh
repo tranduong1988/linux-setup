@@ -1,10 +1,11 @@
 #!/bin/bash
-
+commandyay="yay"
 if ! command -v yay &>/dev/null; then
     echo "Command 'yay' not found. Assigning yay=paru."
     yay() {
         paru "$@"
     }
+    commandyay="paru"
 fi
 
 add_text_to_file() {

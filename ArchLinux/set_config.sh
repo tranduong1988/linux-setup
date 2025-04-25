@@ -11,19 +11,14 @@ sudo touch /etc/tmpfiles.d/{portables,systemd-nspawn}.conf
 find_and_replace "#ParallelDownloads" "ParallelDownloads" /etc/pacman.conf
 
 # set cache to ram
-yay="yay"
-if ! command -v yay &>/dev/null; then
-    yay="paru"
-fi
-
 add_text_to_file "
 tmpfs $HOME/.cache/google-chrome tmpfs defaults,noatime,size=512M 0 0
 #tmpfs $HOME/.cache/microsoft-edge tmpfs defaults,noatime,size=512M 0 0
-tmpfs $HOME/.cache/$yay tmpfs defaults,noatime,size=2G 0 0
+tmpfs $HOME/.cache/$commandyay tmpfs defaults,noatime,size=2G 0 0
 tmpfs /var/cache/pacman/pkg tmpfs defaults,noatime,size=2G 0 0" /etc/fstab
 sudo sh -c 'echo "" >> /etc/fstab'
 
-mkdir -p $HOME/.cache/$yay
+mkdir -p $HOME/.cache/$commandyay
 mkdir -p $HOME/.cache/google-chrome
 
 sudo mount -a
