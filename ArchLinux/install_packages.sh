@@ -32,7 +32,7 @@ if ! command -v yay &>/dev/null; then
         paru "$@"
     }
 fi
-yay -S --noconfirm --needed timeshift-autosnap
+
 yay -S --noconfirm --needed visual-studio-code-bin
 yay -S --noconfirm --needed google-chrome
 yay -S --noconfirm --needed goenv
