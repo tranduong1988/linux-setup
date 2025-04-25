@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source utils.sh
+
 sudo pacman -S --noconfirm noto-fonts  
 sudo pacman -S --noconfirm noto-fonts-cjk 
 sudo pacman -S --noconfirm noto-fonts-emoji
@@ -26,12 +28,6 @@ sudo pacman -S --noconfirm rofi
 sudo pacman -S --noconfirm texstudio
 
 # aur package
-if ! command -v yay &>/dev/null; then
-    echo "Command 'yay' not found. Assigning yay=paru."
-    yay() {
-        paru "$@"
-    }
-fi
 
 yay -S --noconfirm --needed visual-studio-code-bin
 yay -S --noconfirm --needed google-chrome

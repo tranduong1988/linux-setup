@@ -1,3 +1,11 @@
+#!/bin/bash
+
+if ! command -v yay &>/dev/null; then
+    echo "Command 'yay' not found. Assigning yay=paru."
+    yay() {
+        paru "$@"
+    }
+fi
 
 add_text_to_file() {
     local text_to_add="$1"   # Text to add
