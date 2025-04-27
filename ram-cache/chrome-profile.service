@@ -1,0 +1,10 @@
+[Unit]
+Description=Chrome profile memory cache
+
+[Install]
+WantedBy=default.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=%h/.local/bin/chrome-sync.sh
