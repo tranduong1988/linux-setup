@@ -3,6 +3,8 @@
 mkdir -p ~/.local/bin
 cp chrome-sync.sh ~/.local/bin
 cp chrome-cache.sh ~/.local/bin
+chmod +x ~/.local/bin/chrome-sync.sh 
+chmod +x ~/.local/bin/chrome-cache.sh
 
 
 mkdir -p ~/.config/systemd/user

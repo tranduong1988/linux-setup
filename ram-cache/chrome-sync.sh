@@ -14,6 +14,9 @@ if [ ! -r $volatile ]; then
 fi
 
 if [ "$(readlink $link)" != "$volatile" ]; then
+	if [ ! -d "$link" ]; then 
+		mkdir -p $link
+	fi
 	mv $link $static
 	ln -s $volatile $link
 fi
