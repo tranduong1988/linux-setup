@@ -11,8 +11,6 @@ find_and_replace "#greeter-show-manual-login=false" "greeter-show-manual-login=f
 
 # set cache to ram
 add_text_to_file "
-tmpfs $HOME/.cache/google-chrome tmpfs defaults,noatime,size=512M 0 0
-#tmpfs $HOME/.cache/microsoft-edge tmpfs defaults,noatime,size=512M 0 0
 tmpfs /var/cache/apt tmpfs defaults,noatime,size=2G 0 0" /etc/fstab
 sudo sh -c 'echo "" >> /etc/fstab'
 
