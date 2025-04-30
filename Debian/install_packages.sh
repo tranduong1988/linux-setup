@@ -13,7 +13,7 @@ sudo apt install -y tlp
 sudo apt install -y vlc
 sudo apt install -y qbittorrent
 sudo apt install -y qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager
-sudo apt install -y zram-tools
+sudo apt install -y rsync
 sudo apt install -y build-essential
 sudo apt install -y fcitx5-bamboo
 sudo apt install -y systemd-zram-generator 

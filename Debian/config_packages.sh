@@ -11,6 +11,10 @@ compression-algorithm = zstd
 swap-priority = 100
 fs-type = swap" /etc/systemd/zram-generator.conf
 
+sudo systemctl daemon-reexec
+sudo systemctl start systemd-zram-setup@zram0.service
+
+
 # add env
 # pyenv
 add_text_to_file "

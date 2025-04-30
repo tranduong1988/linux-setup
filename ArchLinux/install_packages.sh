@@ -19,6 +19,7 @@ sudo pacman -S --noconfirm vlc
 sudo pacman -S --noconfirm qbittorrent
 sudo pacman -S --noconfirm atril
 sudo pacman -S --noconfirm tk
+sudo pacman -S --noconfirm rsync
 sudo pacman -S --noconfirm fcitx5 fcitx5-configtool fcitx5-gtk fcitx5-qt fcitx5-bamboo
 yes | sudo pacman -S virt-manager qemu-desktop libvirt edk2-ovmf dnsmasq vde2 bridge-utils iptables-nft dmidecode
 sudo pacman -S --noconfirm docker
