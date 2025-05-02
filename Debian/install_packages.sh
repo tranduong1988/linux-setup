@@ -22,12 +22,15 @@ sudo apt install -y rofi
 
 
 
-# aur package
+# third party package
 
-# yay -S --noconfirm --needed timeshift-autosnap
-# yay -S --noconfirm --needed ulauncher
-# yay -S --noconfirm --needed visual-studio-code-bin
-# yay -S --noconfirm --needed google-chrome
+curl -fsSL -o /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i /tmp/google-chrome-stable_current_amd64.deb
+
+curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor -o /etc/apt/keyrings/microsoft.gpg
+echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
+sudo apt update
+sudo apt install code
 
 # pyenv, nvm, goenv, starship
 echo "Installing NVM..."

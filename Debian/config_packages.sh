@@ -6,6 +6,7 @@ source utils.sh
 xfconf-query -c xfce4-keyboard-shortcuts -p "/commands/custom/<Super>m" -t string -s "rofi -show drun -show-icons" --create
 
 #config zram
+sudo touch /etc/systemd/zram-generator.conf
 add_text_to_file "zram-size = ram*0.5
 compression-algorithm = zstd
 swap-priority = 100
