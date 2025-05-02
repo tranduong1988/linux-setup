@@ -7,7 +7,8 @@ xfconf-query -c xfce4-keyboard-shortcuts -p "/commands/custom/<Super>m" -t strin
 
 #config zram
 sudo touch /etc/systemd/zram-generator.conf
-add_text_to_file "zram-size = ram*0.5
+add_text_to_file "[zram0]
+zram-size = ram*0.5
 compression-algorithm = zstd
 swap-priority = 100
 fs-type = swap" /etc/systemd/zram-generator.conf
