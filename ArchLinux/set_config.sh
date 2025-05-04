@@ -2,6 +2,9 @@
 
 source utils.sh
 
+# clean /var/cache/pacman/pkg
+sudo pacman -Scc
+
 # prevent created unwanted subvolumes in cachyOS
 sudo btrfs sub delete /var/lib/machines
 sudo btrfs sub delete /var/lib/portables
