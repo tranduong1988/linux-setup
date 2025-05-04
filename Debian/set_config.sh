@@ -2,6 +2,11 @@
 
 source utils.sh
 
+# clean /var/cache/apt
+sudo apt clean
+sudo rm -rf /var/cache/apt
+sudo mkdir -p /var/cache/apt
+
 # prevent created unwanted subvolumes in debian
 sudo touch /etc/tmpfiles.d/{portables,systemd-nspawn}.conf
 
