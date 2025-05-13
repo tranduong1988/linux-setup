@@ -25,9 +25,9 @@ mkdir -p $HOME/.cache/google-chrome
 sudo mount -a
 
 # set pacman and yay
-cp -r .bash_alias ~/
-add_text_to_file "
-source ~/.bash_alias" ~/.bashrc
+# cp -r .bash_alias ~/
+# add_text_to_file "
+# source ~/.bash_alias" ~/.bashrc
 
 cp -r .config ~/
 mkdir -p $HOME/Desktop
