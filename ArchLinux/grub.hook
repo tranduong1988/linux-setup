@@ -1,7 +1,9 @@
 [Trigger]
+Operation = Install
 Operation = Upgrade
+Operation = Remove
 Type = File
-Target = *
+Target = usr/lib/modules/*/vmlinuz
 
 [Action]
 Description = Updating GRUB Config
