@@ -1,8 +1,8 @@
 #!/bin/sh
 
-static=static-google-chrome
-link=google-chrome
-volatile=/dev/shm/google-chrome-$USER
+static=static-$1
+link=$1
+volatile=/dev/shm/$1-$USER
 
 IFS=
 set -efu

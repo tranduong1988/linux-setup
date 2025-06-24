@@ -1,15 +1,18 @@
 #!/bin/sh
 
 mkdir -p ~/.local/bin
-cp chrome-sync.sh ~/.local/bin
-cp chrome-cache.sh ~/.local/bin
-chmod +x ~/.local/bin/chrome-sync.sh 
-chmod +x ~/.local/bin/chrome-cache.sh
+cp browser-sync.sh ~/.local/bin
+cp browser-cache.sh ~/.local/bin
+chmod +x ~/.local/bin/browser-sync.sh 
+chmod +x ~/.local/bin/browser-cache.sh
 
 
 mkdir -p ~/.config/systemd/user
-cp chrome-profile.service ~/.config/systemd/user
-cp chrome-cache.service ~/.config/systemd/user
+cp browser-profile@.service ~/.config/systemd/user
+cp browser-cache@.service ~/.config/systemd/user
 
-systemctl --user enable chrome-profile.service
-systemctl --user enable chrome-cache.service
+systemctl --user enable browser-profile@google-chrome.service
+systemctl --user enable browser-cache@google-chrome.service
+
+# systemctl --user enable browser-profile@BraveSoftware.service
+# systemctl --user enable browser-cache@BraveSoftware.service

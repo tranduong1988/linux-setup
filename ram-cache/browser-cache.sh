@@ -1,7 +1,7 @@
 #!/bin/sh
 
-link=google-chrome
-volatile=/dev/shm/cache-google-chrome-$USER
+link=$1
+volatile=/dev/shm/cache-$1-$USER
 
 IFS=
 set -efu
