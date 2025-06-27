@@ -50,7 +50,7 @@ export Fcitx5_IM_BYPASS=1" /etc/profile
 
 # Enable services
 DOCKER_IMAGES_PATH='/home/var/lib/docker'
-mkdir -p $DOCKER_IMAGES_PATH
+sudo mkdir -p $DOCKER_IMAGES_PATH
 DAEMON_FILE='/etc/docker/daemon.json'
 sudo mkdir -p '/etc/docker'
 sudo touch $DAEMON_FILE
