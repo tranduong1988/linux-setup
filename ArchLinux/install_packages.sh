@@ -28,8 +28,13 @@ sudo pacman -S --noconfirm pyenv
 sudo pacman -S --noconfirm rofi
 sudo pacman -S --noconfirm texstudio
 
-# aur package
 
+source /etc/os-release
+if [[ "$NAME" == *CachyOS* ]]; then
+    sudo pacman -S --noconfirm xfce4-systemload-plugin
+fi
+
+# aur package
 yay -S --noconfirm --needed visual-studio-code-bin
 yay -S --noconfirm --needed google-chrome
 yay -S --noconfirm --needed goenv
