@@ -14,7 +14,10 @@ find_and_replace "updateGrub=true" "updateGrub=false" $timeshift_autosnap_file
 find_and_replace "maxSnapshots=3" "maxSnapshots=5" $timeshift_autosnap_file
 
 # copy file grub.hook
-sudo cp grub.hook /usr/share/libalpm/hooks/99-grub.hook
+source /etc/os-release
+if [[ "$NAME" != *CachyOS* ]]; then
+    sudo cp grub.hook /usr/share/libalpm/hooks/99-grub.hook
+fi
 
 # edit file grub-btrfsd
 sudo systemctl enable grub-btrfsd
