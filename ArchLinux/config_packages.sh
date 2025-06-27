@@ -49,15 +49,15 @@ export Fcitx5_IM_BYPASS=1" /etc/profile
 # sudo virsh net-autostart default
 
 # Enable services
-# DOCKER_IMAGES_PATH='/home/'$USER'/.local/share/docker/images'
-# mkdir -p $DOCKER_IMAGES_PATH
-# DAEMON_FILE='/etc/docker/daemon.json'
-# sudo mkdir -p '/etc/docker'
-# sudo touch $DAEMON_FILE
+DOCKER_IMAGES_PATH='/home/var/lib/docker'
+mkdir -p $DOCKER_IMAGES_PATH
+DAEMON_FILE='/etc/docker/daemon.json'
+sudo mkdir -p '/etc/docker'
+sudo touch $DAEMON_FILE
 
-# add_text_to_file "{
-#     \"data-root\": \"'$DOCKER_IMAGES_PATH'\"
-# }" $DAEMON_FILE
+add_text_to_file "{
+    \"data-root\": \"$DOCKER_IMAGES_PATH\"
+}" $DAEMON_FILE
 
 sudo systemctl enable --now docker.service
 sudo systemctl start --now docker.service
