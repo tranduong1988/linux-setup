@@ -27,7 +27,7 @@ sudo pacman -S --noconfirm nvm
 sudo pacman -S --noconfirm pyenv
 sudo pacman -S --noconfirm rofi
 sudo pacman -S --noconfirm texstudio
-
+sudo pacman -S --noconfirm zram-generator
 
 source /etc/os-release
 if [[ "$NAME" == *CachyOS* ]]; then
