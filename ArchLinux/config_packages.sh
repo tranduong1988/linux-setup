@@ -5,8 +5,18 @@ source utils.sh
 # set key shortcut for rofi
 xfconf-query -c xfce4-keyboard-shortcuts -p "/commands/custom/<Super>m" -t string -s "rofi -show drun -show-icons" --create
 
-# add env
+#config zram
+sudo touch /etc/systemd/zram-generator.conf
+add_text_to_file "[zram0]
+zram-size = ram*0.5
+compression-algorithm = zstd
+swap-priority = 100
+fs-type = swap" /etc/systemd/zram-generator.conf
 
+sudo systemctl daemon-reexec
+sudo systemctl start systemd-zram-setup@zram0.service
+
+# add env
 # # pyenv
 # add_text_to_file "
 # export PYENV_ROOT=\"\$HOME/.pyenv\"
@@ -40,17 +50,6 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 export INPUT_METHOD=fcitx
 export Fcitx5_IM_BYPASS=1" /etc/profile
-
-#config zram
-sudo touch /etc/systemd/zram-generator.conf
-add_text_to_file "[zram0]
-zram-size = ram*0.5
-compression-algorithm = zstd
-swap-priority = 100
-fs-type = swap" /etc/systemd/zram-generator.conf
-
-sudo systemctl daemon-reexec
-sudo systemctl start systemd-zram-setup@zram0.service
 
 # KVM service
 # sudo systemctl enable --now libvirtd.service
