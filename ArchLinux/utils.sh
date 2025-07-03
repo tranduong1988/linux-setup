@@ -109,7 +109,6 @@ rename_launchers_safely() {
     done
 
     echo "✅ Launcher renaming completed successfully."
-    echo "$i"
 }
 
 add_all_launchers_to_panel() {
@@ -140,4 +139,5 @@ add_all_launchers_to_panel() {
     # xfce4-panel --restart
 
     echo "✅ Done!"
+    echo "$i"
 }

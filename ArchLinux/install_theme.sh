@@ -52,7 +52,7 @@ new_list=()
 for i in {1..13}; do
     new_list+=("$i")
 done
-xfconf-query -c xfce4-panel -p /panels/panel-2/plugin-ids  $(for v in "${new_list[@]}"; do echo -n "-t int -s $v "; done) --create
+xfconf-query -c xfce4-panel -p /panels/panel-1/plugin-ids  $(for v in "${new_list[@]}"; do echo -n "-t int -s $v "; done) --create
 
 
 xfconf-query -c xfce4-panel -p /plugins/plugin-1 -s "applicationsmenu" --create -t string
