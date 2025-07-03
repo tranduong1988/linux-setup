@@ -42,6 +42,7 @@ source /usr/share/nvm/bash_completion" ~/.bashrc
 # starship
 add_text_to_file "
 eval \"\$(starship init bash)\"" ~/.bashrc
+starship preset tokyo-night -o ~/.config/starship.toml
 
 # fcitx5
 add_text_to_file "# fcitx5
