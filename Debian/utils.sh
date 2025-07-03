@@ -100,35 +100,4 @@ rename_launchers_safely() {
     done
 
     echo "✅ Launcher renaming completed successfully."
-    echo "$i"
-}
-
-add_all_launchers_to_panel() {
-    local PANEL_ID="$1"
-    local CHANNEL="xfce4-panel"
-    local CONFIG_DIR="$HOME/.config/xfce4/panel"
-
-    if [ -z "$PANEL_ID" ]; then
-        echo "❌ Usage: add_all_launchers_to_panel <panel-id>"
-        return 1
-    fi
-
-    echo "🔍 Scanning launchers in $CONFIG_DIR..."
-    for dir in "$CONFIG_DIR"/launcher-*; do
-        if [ -d "$dir" ]; then
-            local ID="${dir##*-}"
-
-            echo "➕ Configuring plugin-${ID} as launcher..."
-            xfconf-query -c "$CHANNEL" -p "/plugins/plugin-${ID}" -s launcher --create -t string
-
-            echo "🧩 Adding plugin-${ID} to panel-${PANEL_ID}..."
-            xfconf-query -c "$CHANNEL" -p "/panels/panel-${PANEL_ID}/plugin-ids" -a | grep -q "\b${ID}\b" || \
-            xfconf-query -c "$CHANNEL" -p "/panels/panel-${PANEL_ID}/plugin-ids" -n -t int -s "$ID"
-        fi
-    done
-
-    # echo "🔁 Restarting xfce4-panel..."
-    # xfce4-panel --restart
-
-    echo "✅ Done!"
 }
