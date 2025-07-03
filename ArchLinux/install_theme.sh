@@ -25,18 +25,19 @@ xfconf-query -c xfce4-terminal -p /misc-default-geometry -s "120x30" --create -t
 cp xfce4-panel.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/
 rename_launchers_safely 16
 CONFIG_DIR="$HOME/.config/xfce4/panel"
-for file in "$CONFIG_DIR/launcher-16/*"; do
-    mv "$file" "terminal.desktop"
-done
 
-for file in "$CONFIG_DIR/launcher-17/*"; do
-    mv "$file" "filemanager.desktop"
-done
+mapfile -t file < <(find "$CONFIG_DIR/launcher-16" -maxdepth 1 -type f -name "*" | sort)
+dir=$(dirname "$file")
+mv "$file" "$dir/terminal.desktop"
 
-for file in "$CONFIG_DIR/launcher-18/*"; do
-    mv "$file" "browser.desktop"
-done
+mapfile -t file < <(find "$CONFIG_DIR/launcher-17" -maxdepth 1 -type f -name "*" | sort)
+dir=$(dirname "$file")
+mv "$file" "$dir/filemanager.desktop"
 
-for file in "$CONFIG_DIR/launcher-19/*"; do
-    mv "$file" "appfind.desktop"
-done
+mapfile -t file < <(find "$CONFIG_DIR/launcher-18" -maxdepth 1 -type f -name "*" | sort)
+dir=$(dirname "$file")
+mv "$file" "$dir/browser.desktop"
+
+mapfile -t file < <(find "$CONFIG_DIR/launcher-19" -maxdepth 1 -type f -name "*" | sort)
+dir=$(dirname "$file")
+mv "$file" "$dir/appfind.desktop"
