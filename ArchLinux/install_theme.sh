@@ -25,17 +25,27 @@ xfconf-query -c xfce4-terminal -p /misc-default-geometry -s "120x30" --create -t
 # cp xfce4-panel.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/
 
 # edit panel 2
-clone_plugin 18 21 2
-clone_plugin 17 20 2
-clone_plugin 16 19 2
-clone_plugin 15 18 2
-clone_plugin 14 17 2
-clone_plugin 13 16 2
-clone_plugin 12 15 2
-clone_plugin 11 14 2
+xfconf-query -c xfce4-panel -p /panels/panel-2/plugin-ids -r
+
+for i in {11..18}; do
+    xfconf-query -c xfce4-panel -p /panels/panel-2/plugin-ids -n -t int -s "$i"
+done
+
+xfconf-query -c xfce4-panel -p /plugins/plugin-14 -s "showdesktop" --create -t string
+xfconf-query -c xfce4-panel -p /plugins/plugin-15 -s "separator" --create -t string
+
+rename_launchers_safely 16
+count=$(add_all_launchers_to_panel 2)
+
+xfconf-query -c xfce4-panel -p /plugins/plugin-${count} -s "separator" --create -t string
+((count++))
+xfconf-query -c xfce4-panel -p /plugins/plugin-${count} -s "directorymenu" --create -t string
+xfconf-query -c xfce4-panel -p /plugins/plugin-${count}/base-directory -s "$HOME" --create -t string
+
 
 #edit panel 1
 xfconf-query -c xfce4-panel -p /panels/panel-1/plugin-ids -r
+
 for i in {1..13}; do
     xfconf-query -c xfce4-panel -p /panels/panel-1/plugin-ids -n -t int -s "$i"
 done
