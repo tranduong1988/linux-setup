@@ -52,6 +52,11 @@ export XMODIFIERS=@im=fcitx
 export INPUT_METHOD=fcitx
 export Fcitx5_IM_BYPASS=1" /etc/profile
 
+# rofi
+mkdir ~/.config/rofi
+curl https://raw.githubusercontent.com/dracula/rofi/master/theme/config1.rasi -o ~/.config/rofi/config.rasi
+
+
 # KVM service
 # sudo systemctl enable --now libvirtd.service
 # sudo usermod -aG libvirt $USER

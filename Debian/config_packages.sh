@@ -35,6 +35,10 @@ add_text_to_file "
 eval \"\$(starship init bash)\"" ~/.bashrc
 starship preset tokyo-night -o ~/.config/starship.toml
 
+# rofi
+mkdir ~/.config/rofi
+curl https://raw.githubusercontent.com/dracula/rofi/master/theme/config1.rasi -o ~/.config/rofi/config.rasi
+
 # fcitx5
 add_text_to_file "# fcitx5
 export GTK_IM_MODULE=fcitx
