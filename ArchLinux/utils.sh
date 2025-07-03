@@ -81,3 +81,53 @@ add_swapfile() {
 
     sudo swapon --show
 }
+
+clone_plugin() {
+    local OLD_ID="$1"
+    local NEW_ID="$2"
+    local PANEL_ID="${3:-0}"
+    local CHANNEL="xfce4-panel"
+
+    echo "📦 Checking old plugin (plugin-${OLD_ID})..."
+    local OLD_PLUGIN_TYPE
+    OLD_PLUGIN_TYPE=$(xfconf-query -c "$CHANNEL" -p "/plugins/plugin-${OLD_ID}" 2>/dev/null)
+
+    if [ -z "$OLD_PLUGIN_TYPE" ]; then
+        echo "❌ Plugin $OLD_ID does not exist."
+        return 1
+    fi
+
+    echo "✅ Plugin ${OLD_ID} type: $OLD_PLUGIN_TYPE"
+
+    echo "➕ Creating new plugin (plugin-${NEW_ID})..."
+    xfconf-query -c "$CHANNEL" -p "/plugins/plugin-${NEW_ID}" -s "$OLD_PLUGIN_TYPE" --create -t string
+
+    echo "🔁 Reading plugin-ids from panel-${PANEL_ID}..."
+    local PLUGIN_IDS
+    PLUGIN_IDS=$(xfconf-query -c "$CHANNEL" -p "/panels/panel-${PANEL_ID}/plugin-ids")
+
+    if [[ -z "$PLUGIN_IDS" ]]; then
+        echo "❌ Cannot find /panels/panel-${PANEL_ID}/plugin-ids."
+        return 1
+    fi
+
+    local NEW_PLUGIN_IDS
+    NEW_PLUGIN_IDS=$(echo "$PLUGIN_IDS" | sed "s/\b${OLD_ID}\b/${NEW_ID}/")
+
+    echo "⚙️ Updating plugin-ids list..."
+    xfconf-query -c "$CHANNEL" -p "/panels/panel-${PANEL_ID}/plugin-ids" -r
+    for ID in $NEW_PLUGIN_IDS; do
+        xfconf-query -c "$CHANNEL" -p "/panels/panel-${PANEL_ID}/plugin-ids" -n -t int -s "$ID"
+    done
+
+    read -rp "❓ Do you want to remove plugin-${OLD_ID}? (y/N): " DELETE
+    if [[ "$DELETE" =~ ^[Yy]$ ]]; then
+        xfconf-query -c "$CHANNEL" -p "/plugins/plugin-${OLD_ID}" -r
+        echo "🗑 plugin-${OLD_ID} has been removed."
+    fi
+
+    echo "🔁 Restarting xfce4-panel..."
+    xfce4-panel --restart
+
+    echo "✅ Done: plugin-${OLD_ID} ➜ plugin-${NEW_ID}"
+}
