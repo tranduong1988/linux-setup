@@ -28,10 +28,10 @@ xfconf-query -c xfce4-terminal -p /misc-default-geometry -s "120x30" --create -t
 xfconf-query -c xfce4-panel -p /panels/panel-2/plugin-ids -r
 
 new_list=()
-for i in {11..18}; do
+for i in {14..21}; do
     new_list+=("$i")
 done
-xfconf-query -c xfce4-panel -p /panels/panel-2/plugin-ids -t int $(for v in "${new_list[@]}"; do echo -n "-s $v "; done) -s 0
+xfconf-query -c xfce4-panel -p /panels/panel-2/plugin-ids  $(for v in "${new_list[@]}"; do echo -n "-t int -s $v "; done) --create
 
 xfconf-query -c xfce4-panel -p /plugins/plugin-14 -s "showdesktop" --create -t string
 xfconf-query -c xfce4-panel -p /plugins/plugin-15 -s "separator" --create -t string
@@ -52,7 +52,7 @@ new_list=()
 for i in {1..13}; do
     new_list+=("$i")
 done
-xfconf-query -c xfce4-panel -p /panels/panel-2/plugin-ids -t int $(for v in "${new_list[@]}"; do echo -n "-s $v "; done) -s 0
+xfconf-query -c xfce4-panel -p /panels/panel-2/plugin-ids  $(for v in "${new_list[@]}"; do echo -n "-t int -s $v "; done) --create
 
 
 xfconf-query -c xfce4-panel -p /plugins/plugin-1 -s "applicationsmenu" --create -t string
