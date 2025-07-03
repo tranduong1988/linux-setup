@@ -23,4 +23,3 @@ xfconf-query -c xfce4-terminal -p /background-darkness -s 0.75 --create -t doubl
 xfconf-query -c xfce4-terminal -p /misc-default-geometry -s "120x30" --create -t string
 
 cp xfce4-panel.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/
-xfce4-panel -r
