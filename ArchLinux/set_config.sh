@@ -15,11 +15,26 @@ find_and_replace "#ParallelDownloads" "ParallelDownloads" /etc/pacman.conf
 
 # set cache to ram
 add_text_to_file "
+/home/var/cache     /var/cache      none    bind    0   0
+/home/var/log       /var/log        none    bind    0   0
+/home/var/tmp       /var/tmp        none    bind    0   0
 tmpfs $HOME/.cache/$commandyay tmpfs defaults,noatime,size=2G 0 0
 tmpfs /var/cache/pacman/pkg tmpfs defaults,noatime,size=2G 0 0" /etc/fstab
 sudo sh -c 'echo "" >> /etc/fstab'
 
 mkdir -p $HOME/.cache/$commandyay
+
+sudo rm -rf /var/cache
+sudo rm -rf /var/log
+sudo rm -rf /var/tmp
+
+sudo mkdir -p /var/cache
+sudo mkdir -p /var/log
+sudo mkdir -p /var/tmp
+
+sudo mkdir -p /home/var/cache
+sudo mkdir -p /home/var/log
+sudo mkdir -p /home/var/tmp
 
 sudo mount -a
 
