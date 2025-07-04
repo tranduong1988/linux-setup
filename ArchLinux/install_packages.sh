@@ -28,17 +28,13 @@ sudo pacman -S --noconfirm pyenv
 sudo pacman -S --noconfirm rofi
 sudo pacman -S --noconfirm texstudio
 sudo pacman -S --noconfirm zram-generator
-
-source /etc/os-release
-if [[ "$NAME" == *CachyOS* ]]; then
-    sudo pacman -S --noconfirm xfce4-systemload-plugin
-fi
+pacman -Q xfce4-systemload-plugin &>/dev/null || sudo pacman -S --noconfirm xfce4-systemload-plugin
 
 # aur package
-yay -S --noconfirm --needed visual-studio-code-bin
-yay -S --noconfirm --needed google-chrome
-yay -S --noconfirm --needed goenv
-yay -S --noconfirm --needed starship
+yay -S --mflags --skipinteg --noconfirm --needed visual-studio-code-bin
+yay -S --mflags --skipinteg --noconfirm --needed google-chrome
+yay -S --mflags --skipinteg --noconfirm --needed goenv
+yay -S --mflags --skipinteg --noconfirm --needed starship
 
 # pyenv, nvm, goenv, starship
 # echo "Installing NVM..."
