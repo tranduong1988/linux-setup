@@ -2,33 +2,34 @@
 
 source utils.sh
 
-sudo pacman -S --noconfirm noto-fonts  
-sudo pacman -S --noconfirm noto-fonts-cjk 
-sudo pacman -S --noconfirm noto-fonts-emoji
-sudo pacman -S --noconfirm noto-fonts-extra
+sudo pacman -S --noconfirm --needed noto-fonts  
+sudo pacman -S --noconfirm --needed noto-fonts-cjk 
+sudo pacman -S --noconfirm --needed noto-fonts-emoji
+sudo pacman -S --noconfirm --needed noto-fonts-extra
 
-sudo pacman -S --noconfirm git
-sudo pacman -S --noconfirm 7zip
-sudo pacman -S --noconfirm unrar
-sudo pacman -S --noconfirm unzip
-sudo pacman -S --noconfirm sysstat
-sudo pacman -S --noconfirm htop
-sudo pacman -S --noconfirm btop
-sudo pacman -S --noconfirm tlp
-sudo pacman -S --noconfirm vlc
-sudo pacman -S --noconfirm qbittorrent
-sudo pacman -S --noconfirm atril
-sudo pacman -S --noconfirm tk
-sudo pacman -S --noconfirm rsync
-sudo pacman -S --noconfirm fcitx5 fcitx5-configtool fcitx5-gtk fcitx5-qt fcitx5-bamboo
-yes | sudo pacman -S virt-manager qemu-desktop libvirt edk2-ovmf dnsmasq vde2 bridge-utils iptables-nft dmidecode
-sudo pacman -S --noconfirm docker
-sudo pacman -S --noconfirm nvm
-sudo pacman -S --noconfirm pyenv
-sudo pacman -S --noconfirm rofi
-sudo pacman -S --noconfirm texstudio
-sudo pacman -S --noconfirm zram-generator
-pacman -Q xfce4-systemload-plugin &>/dev/null || sudo pacman -S --noconfirm xfce4-systemload-plugin
+sudo pacman -S --noconfirm --needed git
+sudo pacman -S --noconfirm --needed 7zip
+sudo pacman -S --noconfirm --needed unrar
+sudo pacman -S --noconfirm --needed unzip
+sudo pacman -S --noconfirm --needed sysstat
+sudo pacman -S --noconfirm --needed htop
+sudo pacman -S --noconfirm --needed btop
+sudo pacman -S --noconfirm --needed tlp
+sudo pacman -S --noconfirm --needed vlc
+sudo pacman -S --noconfirm --needed qbittorrent
+sudo pacman -S --noconfirm --needed atril
+sudo pacman -S --noconfirm --needed tk
+sudo pacman -S --noconfirm --needed rsync
+sudo pacman -S --noconfirm --needed fcitx5 fcitx5-configtool fcitx5-gtk fcitx5-qt fcitx5-bamboo
+yes | sudo pacman -S --needed virt-manager qemu-desktop libvirt edk2-ovmf dnsmasq vde2 bridge-utils iptables-nft dmidecode
+sudo pacman -S --noconfirm --needed docker
+sudo pacman -S --noconfirm --needed nvm
+sudo pacman -S --noconfirm --needed pyenv
+sudo pacman -S --noconfirm --needed rofi
+sudo pacman -S --noconfirm --needed texstudio
+sudo pacman -S --noconfirm --needed xarchiver
+sudo pacman -S --noconfirm --needed zram-generator
+sudo pacman -S --noconfirm --needed xfce4-systemload-plugin
 
 # aur package
 yay -S --mflags --skipinteg --noconfirm --needed visual-studio-code-bin
