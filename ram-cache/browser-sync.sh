@@ -21,9 +21,21 @@ if [ "$(readlink $link)" != "$volatile" ]; then
 	ln -s $volatile $link
 fi
 
-if [ -e $link/.unpacked ]; then
-	rsync -av --delete --exclude .unpacked ./$link/ ./$static/
+# if [ -e $link/.unpacked ]; then
+# 	rsync -av --delete --exclude .unpacked ./$link/ ./$static/
+# else
+# 	rsync -av ./$static/ ./$link/
+# 	touch $link/.unpacked
+# fi
+
+if [ -e "$link/.unpacked" ]; then
+	rsync -av --delete \
+		--exclude '.unpacked' \
+		--exclude 'Default/Service Worker/' \
+		"./$link/" "./$static/"
 else
-	rsync -av ./$static/ ./$link/
-	touch $link/.unpacked
+	rsync -av \
+		--exclude 'Default/Service Worker/' \
+		"./$static/" "./$link/"
+	touch "$link/.unpacked"
 fi
