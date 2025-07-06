@@ -30,6 +30,7 @@ sudo pacman -S --noconfirm --needed texstudio
 sudo pacman -S --noconfirm --needed xarchiver
 sudo pacman -S --noconfirm --needed zram-generator
 sudo pacman -S --noconfirm --needed xfce4-systemload-plugin
+sudo pacman -S --noconfirm --needed reflector
 
 # aur package
 yay -S --mflags --skipinteg --noconfirm --needed visual-studio-code-bin
