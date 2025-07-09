@@ -2,7 +2,7 @@
 
 source utils.sh
 
-AUR_HELPER=$(command -v yay || command -v paru)
+AUR_HELPER=$(get_aur_helper)
 sudo pacman -S --noconfirm timeshift
 sudo pacman -S --noconfirm grub-btrfs 
 sudo pacman -S --noconfirm inotify-tools

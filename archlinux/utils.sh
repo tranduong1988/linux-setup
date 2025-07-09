@@ -1,5 +1,21 @@
 #!/bin/bash
 
+get_aur_helper() {
+    AUR_HELPER=$(command -v yay || command -v paru)
+    if [ -z "$AUR_HELPER" ]; then
+        echo "No AUR helper found. Installing yay..."
+        sudo pacman -S --needed --noconfirm base-devel git
+        git clone https://aur.archlinux.org/yay-bin.git /tmp/yay
+        current=$(pwd)
+        cd /tmp/yay
+        makepkg -si --noconfirm
+        cd $current
+        rm -rf /tmp/yay
+        AUR_HELPER=$(command -v yay)
+    fi
+    echo $AUR_HELPER
+}
+
 add_text_to_file() {
     local text_to_add="$1"   # Text to add
     local target_file="$2"   # File to modify

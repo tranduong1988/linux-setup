@@ -23,9 +23,9 @@ find_and_replace "#ParallelDownloads" "ParallelDownloads" /etc/pacman.conf
 
 # set cache to ram
 echo 'set aur_helper and pacman cache to ram'
-AUR_HELPER=$(command -v yay || command -v paru)
+AUR_HELPER=$(get_aur_helper)
 AUR_TOOL_NAME=$(basename $AUR_HELPER)
-if [ -n "$AUR_HELPER" ]; then
+if [ -n "$AUR_TOOL_NAME" ]; then
 add_text_to_file "
 tmpfs $HOME/.cache/$AUR_TOOL_NAME tmpfs defaults,noatime,size=2G 0 0" /etc/fstab
 fi

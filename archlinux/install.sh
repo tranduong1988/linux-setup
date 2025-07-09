@@ -1,18 +1,9 @@
 #!/bin/bash
 
+source utils.sh
+
 # Install AUR helper if not found
-AUR_HELPER=$(command -v yay || command -v paru)
-if [ -z "$AUR_HELPER" ]; then
-    echo "No AUR helper found. Installing paru..."
-    sudo pacman -S --needed --noconfirm base-devel git
-    git clone https://aur.archlinux.org/yay-bin.git /tmp/yay
-    current=$(pwd)
-    cd /tmp/yay
-    makepkg -si --noconfirm
-    cd $current
-    rm -rf /tmp/yay
-    AUR_HELPER=$(command -v yay)
-fi
+AUR_HELPER=$(get_aur_helper)
 
 echo "pre config..."
 bash pre_config.sh
