@@ -24,16 +24,17 @@ find_and_replace "#ParallelDownloads" "ParallelDownloads" /etc/pacman.conf
 # set cache to ram
 echo 'set aur_helper and pacman cache to ram'
 AUR_HELPER=$(command -v yay || command -v paru)
+AUR_TOOL_NAME=$(basename $AUR_HELPER)
 if [ -n "$AUR_HELPER" ]; then
 add_text_to_file "
-tmpfs $HOME/.cache/$AUR_HELPER tmpfs defaults,noatime,size=2G 0 0" /etc/fstab
+tmpfs $HOME/.cache/$AUR_TOOL_NAME tmpfs defaults,noatime,size=2G 0 0" /etc/fstab
 fi
 
 add_text_to_file "
 tmpfs /var/cache/pacman/pkg tmpfs defaults,noatime,size=2G 0 0
 " /etc/fstab
 
-mkdir -p $HOME/.cache/$AUR_HELPER
+mkdir -p $HOME/.cache/$AUR_TOOL_NAME
 
 sudo mount -a
 sudo systemctl daemon-reload
