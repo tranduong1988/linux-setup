@@ -13,7 +13,7 @@ sudo touch /etc/tmpfiles.d/{portables,systemd-nspawn}.conf
 # Copy root directory contents
 echo "Copying root directory contents..."
 if [ -d "./root" ]; then
-    cp -rn ./root /
+    sudo cp -rn ./root/. /
     echo "Root directory copied successfully."
 else
     echo "./root not found. Skipping root directory copy."
