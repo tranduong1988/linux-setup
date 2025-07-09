@@ -11,19 +11,21 @@ sudo mkdir -p /var/cache/apt
 sudo touch /etc/tmpfiles.d/{portables,systemd-nspawn}.conf
 
 #
+echo 'Set greeter-hide-users and greeter-show-manual-login'
 find_and_replace "#greeter-hide-users=false" "greeter-hide-users=false" /etc/lightdm/lightdm.conf
 find_and_replace "#greeter-show-manual-login=false" "greeter-show-manual-login=false" /etc/lightdm/lightdm.conf
 
 # set cache to ram
+echo 'Set apt cache to ram'
 add_text_to_file "
 tmpfs /var/cache/apt tmpfs defaults,noatime,size=2G 0 0" /etc/fstab
 sudo sh -c 'echo "" >> /etc/fstab'
 
-mkdir -p $HOME/.cache/google-chrome
-
-# sudo mount -a
+sudo mount -a
+sudo systemctl daemon-reload
 
 # set vm.swappiness=10
+echo 'Set vm.swappiness=10'
 sudo touch /etc/sysctl.d/99-swappiness.conf
 add_text_to_file "
 vm.swappiness=10" /etc/sysctl.d/99-swappiness.conf

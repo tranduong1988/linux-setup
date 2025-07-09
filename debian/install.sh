@@ -1,26 +1,30 @@
 #!/bin/bash
 
-sudo apt install -y fonts-noto fonts-noto-cjk fonts-noto-color-emoji fonts-noto-extra
-sudo apt install -y git
-sudo apt install -y curl
-sudo apt install -y 7zip
-sudo apt install -y unrar
-sudo apt install -y unzip
-sudo apt install -y sysstat
-sudo apt install -y htop
-sudo apt install -y btop
-sudo apt install -y tlp
-sudo apt install -y vlc
-sudo apt install -y qbittorrent
-sudo apt install -y qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager
-sudo apt install -y rsync
-sudo apt install -y build-essential
-sudo apt install -y fcitx5-bamboo
-sudo apt install -y systemd-zram-generator 
-sudo apt install -y --no-install-recommends texstudio
-sudo apt install -y rofi
+source utils.sh
 
+echo "pre config..."
+bash pre_config.sh
 
+# Read packages from pkgs.txt and install in one go
+if [ -f "pkgs.txt" ]; then
+    # Create an array of packages (skip comments and empty lines)
+    packages=()
+    while IFS= read -r pkg || [ -n "$pkg" ]; do
+        pkg=$(echo "$pkg" | sed 's/#.*$//')  # Remove comments
+        pkg=$(echo "$pkg" | xargs)           # Trim whitespace
+        [ -n "$pkg" ] && packages+=("$pkg")  # Add to array if not empty
+    done < "pkgs.txt"
+    
+    # Install all packages in one command if array is not empty
+    if [ ${#packages[@]} -gt 0 ]; then
+        echo "Installing packages: ${packages[*]}"
+        sudo apt-get install -y --no-install-recommends "${packages[@]}"
+    else
+        echo "No valid packages found in pkgs.txt"
+    fi
+else
+    echo "pkgs.txt not found. Skipping package installation."
+fi
 
 # third party package
 
@@ -59,9 +63,10 @@ sudo apt-get update
 echo "Install Docker...."
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-
-
-
 echo "Installing starship..."
 curl -sS https://starship.rs/install.sh | sh
 
+
+
+echo "post config..."
+bash post_config.sh

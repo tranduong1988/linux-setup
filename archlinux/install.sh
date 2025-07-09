@@ -32,5 +32,5 @@ else
     echo "pkgs.txt not found. Skipping package installation."
 fi
 
-echo "post config"
+echo "post config..."
 bash post_config.sh
