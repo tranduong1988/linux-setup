@@ -8,16 +8,8 @@ AUR_HELPER=$(get_aur_helper)
 echo "pre config..."
 bash pre_config.sh
 
-# Check if the 'iptables' package is installed
-if pacman -Q iptables &>/dev/null; then
-    echo "'iptables' package is installed. Removing it..."
-    sudo pacman -Rdd --noconfirm iptables
-    echo "'iptables' package has been removed."
-else
-    echo "'iptables' package is not installed on the system."
-fi
-
-echo "Installing dependencies..."
+# install iptables-nft 
+yes | $AUR_HELPER -S iptables-nft 
 
 # Read packages from pkgs.txt and install in one go
 if [ -f "pkgs.txt" ]; then
