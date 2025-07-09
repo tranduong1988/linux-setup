@@ -10,11 +10,13 @@ sudo btrfs sub delete /var/lib/machines
 sudo btrfs sub delete /var/lib/portables
 sudo touch /etc/tmpfiles.d/{portables,systemd-nspawn}.conf
 
-# copy file grub.hook
-echo 'copy file grub.hook...'
-source /etc/os-release
-if [[ "$NAME" != *CachyOS* ]]; then
-    sudo cp grub.hook /usr/share/libalpm/hooks/99-grub.hook
+# Copy root directory contents
+echo "Copying root directory contents..."
+if [ -d "./root" ]; then
+    cp -rn ./root /
+    echo "Root directory copied successfully."
+else
+    echo "./root not found. Skipping root directory copy."
 fi
 
 # unrem ParallelDownloads
