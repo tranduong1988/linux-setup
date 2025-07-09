@@ -2,11 +2,12 @@
 
 source utils.sh
 
+AUR_HELPER=$(command -v yay || command -v paru)
 sudo pacman -S --noconfirm timeshift
 sudo pacman -S --noconfirm grub-btrfs 
 sudo pacman -S --noconfirm inotify-tools
 
-yay -S --noconfirm --needed timeshift-autosnap
+$AUR_HELPER -S --noconfirm --needed timeshift-autosnap
 
 # edit file timeshift-autosnap config
 timeshift_autosnap_file='/etc/timeshift-autosnap.conf'
