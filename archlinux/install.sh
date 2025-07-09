@@ -11,7 +11,7 @@ bash pre_config.sh
 # Check if the 'iptables' package is installed
 if pacman -Q iptables &>/dev/null; then
     echo "'iptables' package is installed. Removing it..."
-    sudo pacman -Rns --noconfirm iptables
+    sudo pacman -Rdd --noconfirm iptables
     echo "'iptables' package has been removed."
 else
     echo "'iptables' package is not installed on the system."
