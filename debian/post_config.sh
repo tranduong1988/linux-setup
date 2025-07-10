@@ -36,7 +36,7 @@ echo "config docker..."
 sudo systemctl enable --now docker.service
 sudo systemctl start --now docker.service
 sudo usermod -aG docker $USER
-newgrp docker
+# newgrp docker
 
 # fcitx5
 echo "config fcitx5 bamboo..."
