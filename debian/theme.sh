@@ -1,16 +1,20 @@
 #!/bin/bash
 
-mkdir -p Qogir-icon
-curl -L https://github.com/vinceliuice/Qogir-icon-theme/archive/refs/tags/2025-02-15.tar.gz | tar -xzf - -C Qogir-icon --strip-components=1
-cd Qogir-icon
+ICON_PATH=/tmp/icon
+mkdir -p $ICON_PATH
+curl -L https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/archive/refs/tags/20250501.tar.gz | tar -xzf - -C $ICON_PATH --strip-components=1
+current=$(pwd)
+cd $ICON_PATH
 ./install.sh
-cd ..
+cd $current
 
-mkdir -p Orchis-theme
-curl -L https://github.com/vinceliuice/Orchis-theme/archive/refs/tags/2024-11-03.tar.gz  | tar -xzf - -C Orchis-theme --strip-components=1
-cd Orchis-theme
+THEME_PATH=/tmp/theme
+mkdir -p $THEME_PATH
+curl -L https://github.com/vinceliuice/Matcha-gtk-theme/archive/refs/tags/2025-04-11.tar.gz | tar -xzf - -C $THEME_PATH --strip-components=1
+current=$(pwd)
+cd $THEME_PATH
 ./install.sh
-cd ..
+cd $current
 
 
 mkdir -p ~/.local/share/fonts
