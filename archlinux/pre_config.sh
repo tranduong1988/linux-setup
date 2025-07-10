@@ -20,23 +20,28 @@ else
 fi
 
 # unrem ParallelDownloads
-echo 'unrem ParallelDownloads...'
+echo 'Edit config pacman.conf...'
 find_and_replace "#ParallelDownloads" "ParallelDownloads" /etc/pacman.conf
+find_and_replace "#CacheDir    = /var/cache/pacman/pkg/" "CacheDir    = /tmp/pacman_pkg" /etc/pacman.conf
+
+
+# set cache for google-chrome
+echo 'set google-chrome cache to ram'
+current=$(pwd)
+cd ../ram-cache
+bash install.sh
+cd $current
 
 # set cache to ram
 echo 'set aur_helper and pacman cache to ram'
 AUR_HELPER=$(get_aur_helper)
 AUR_TOOL_NAME=$(basename $AUR_HELPER)
+
 if [ -n "$AUR_TOOL_NAME" ]; then
-add_text_to_file "
-tmpfs $HOME/.cache/$AUR_TOOL_NAME tmpfs defaults,noatime,size=2G 0 0" /etc/fstab
+    systemctl --user enable browser-cache@$AUR_TOOL_NAME.service
 fi
 
-add_text_to_file "
-tmpfs /var/cache/pacman/pkg tmpfs defaults,noatime,size=2G 0 0
-" /etc/fstab
 
-mkdir -p $HOME/.cache/$AUR_TOOL_NAME
 
 sudo mount -a
 sudo systemctl daemon-reload
