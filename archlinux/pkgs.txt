@@ -1,3 +1,10 @@
+mesa 
+intel-media-driver 
+vulkan-intel
+nvidia-lts 
+nvidia-utils 
+nvidia-prime
+libva-utils
 noto-fonts  
 noto-fonts-cjk 
 noto-fonts-emoji
