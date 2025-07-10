@@ -78,13 +78,13 @@ source /usr/share/nvm/bash_completion" ~/.bashrc
 echo "config starship..."
 add_text_to_file "
 eval \"\$(starship init bash)\"" ~/.bashrc
-starship preset tokyo-night -o ~/.config/starship.toml
+# starship preset tokyo-night -o ~/.config/starship.toml
 
 # rofi
 echo "config rofi..."
 xfconf-query -c xfce4-keyboard-shortcuts -p "/commands/custom/<Super>m" -t string -s "rofi -show drun -show-icons" --create
-mkdir ~/.config/rofi
-curl https://raw.githubusercontent.com/dracula/rofi/master/theme/config1.rasi -o ~/.config/rofi/config.rasi
+# mkdir ~/.config/rofi
+# curl https://raw.githubusercontent.com/dracula/rofi/master/theme/config1.rasi -o ~/.config/rofi/config.rasi
 
 
 echo "config font and terminal..."
