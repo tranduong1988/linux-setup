@@ -87,10 +87,7 @@ mkdir ~/.config/rofi
 curl https://raw.githubusercontent.com/dracula/rofi/master/theme/config1.rasi -o ~/.config/rofi/config.rasi
 
 
-echo "config theme and terminal..."
-xfconf-query -c xsettings -p /Net/ThemeName -s "Orchis-Dark-Compact" --create -t string
-xfconf-query -c xsettings -p /Net/IconThemeName -s "Qogir-dark" --create -t string
-xfconf-query -c xfwm4 -p /general/theme -s "Orchis-Dark-Compact" --create -t string
+echo "config font and terminal..."
 
 xfconf-query -c xsettings -p /Gtk/FontName -s "Inter Display Regular 10" --create -t string
 xfconf-query -c xfwm4 -p /general/title_font -s "Inter Display Bold 9" --create -t string
@@ -102,6 +99,7 @@ xfconf-query -c xfce4-terminal -p /background-darkness -s 0.75 --create -t doubl
 xfconf-query -c xfce4-terminal -p /misc-default-geometry -s "120x30" --create -t string
 
 # cp xfce4-panel.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/
+echo "config xfce4-panel..."
 rename_launchers_safely 16
 CONFIG_DIR="$HOME/.config/xfce4/panel"
 
