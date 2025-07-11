@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source utils.sh
+
 ICON_PATH=/tmp/icon
 mkdir -p $ICON_PATH
 curl -L https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/archive/refs/tags/20250501.tar.gz | tar -xzf - -C $ICON_PATH --strip-components=1
