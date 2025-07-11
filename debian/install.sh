@@ -60,10 +60,5 @@ sudo apt-get update
 echo "Install Docker...."
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-echo "Installing starship..."
-curl -sS https://starship.rs/install.sh | sh
-
-
-
 echo "post config..."
 bash post_config.sh
