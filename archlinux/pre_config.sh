@@ -41,11 +41,6 @@ if [ -n "$AUR_TOOL_NAME" ]; then
     systemctl --user enable browser-cache@$AUR_TOOL_NAME.service
 fi
 
-
-
-sudo mount -a
-sudo systemctl daemon-reload
-
 echo "create home folder..."
 cp -r .config ~/
 mkdir -p $HOME/Desktop

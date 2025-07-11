@@ -16,13 +16,9 @@ find_and_replace "#greeter-hide-users=false" "greeter-hide-users=false" /etc/lig
 find_and_replace "#greeter-show-manual-login=false" "greeter-show-manual-login=false" /etc/lightdm/lightdm.conf
 
 # set cache to ram
-echo 'Set apt cache to ram'
-add_text_to_file "
-tmpfs /var/cache/apt tmpfs defaults,noatime,size=2G 0 0" /etc/fstab
-sudo sh -c 'echo "" >> /etc/fstab'
-
-sudo mount -a
-sudo systemctl daemon-reload
+add_text_to_file "Dir::Cache    /tmp/apt_cache;" /etc/apt/apt.conf
+add_text_to_file "d /tmp/apt_cache/archives/partial 0755 root root -" /etc/tmpfiles.d/apt_cache.conf
+sudo systemd-tmpfiles --create
 
 # set vm.swappiness=10
 echo 'Set vm.swappiness=10'
