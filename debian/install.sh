@@ -38,13 +38,10 @@ sudo apt install code
 
 # pyenv, nvm, goenv, starship
 echo "Installing NVM..."
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 
 echo "Installing goenv..."
 git clone https://github.com/go-nv/goenv.git ~/.goenv
-
-echo "Installing pyenv..."
-curl https://pyenv.run | bash
 
 # Docker
 # Add Docker's official GPG key:

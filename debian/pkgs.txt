@@ -25,3 +25,5 @@ systemd-zram-generator
 lxpolkit
 texstudio
 rofi
+starship
+pyenv
