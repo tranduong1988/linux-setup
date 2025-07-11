@@ -53,8 +53,6 @@ export Fcitx5_IM_BYPASS=1" /etc/profile
 # pyenv
 echo "config pyenv..."
 add_text_to_file "
-export PYENV_ROOT=\"\$HOME/.pyenv\"
-[[ -d \$PYENV_ROOT/bin ]] && export PATH=\"\$PYENV_ROOT/bin:\$PATH\"
 eval \"\$(pyenv init -)\"" ~/.bashrc
 
 # goenv
