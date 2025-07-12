@@ -16,11 +16,11 @@ add_text_to_file() {
     fi
 
     # Create a backup if not already created
-    local backup_file="${target_file}.bak"
-    if [[ ! -f "$backup_file" ]]; then
-        sudo cp "$target_file" "$backup_file"
-        echo "Backup created at $backup_file"
-    fi
+    # local backup_file="${target_file}.bak"
+    # if [[ ! -f "$backup_file" ]]; then
+    #     sudo cp "$target_file" "$backup_file"
+    #     echo "Backup created at $backup_file"
+    # fi
   
     # Check if the text already exists
     if ! awk -v RS="\0" -v search="$text_to_add" '{if (index($0, search) > 0) found=1} END {exit !found}' "$target_file"; then

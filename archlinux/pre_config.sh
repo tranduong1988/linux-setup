@@ -39,6 +39,7 @@ AUR_TOOL_NAME=$(basename $AUR_HELPER)
 
 if [ -n "$AUR_TOOL_NAME" ]; then
     systemctl --user enable browser-cache@$AUR_TOOL_NAME.service
+    systemctl --user restart browser-cache@$AUR_TOOL_NAME.service
 fi
 
 echo "create home folder..."
