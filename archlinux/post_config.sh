@@ -4,7 +4,6 @@ source utils.sh
 
 #config zram
 echo "config zram-generator..."
-sudo touch /etc/systemd/zram-generator.conf
 add_text_to_file "[zram0]
 zram-size = ram*0.5
 compression-algorithm = zstd
@@ -26,7 +25,6 @@ DOCKER_IMAGES_PATH='/home/var/lib/docker'
 sudo mkdir -p $DOCKER_IMAGES_PATH
 DAEMON_FILE='/etc/docker/daemon.json'
 sudo mkdir -p '/etc/docker'
-sudo touch $DAEMON_FILE
 
 add_text_to_file "{
     \"data-root\": \"$DOCKER_IMAGES_PATH\"

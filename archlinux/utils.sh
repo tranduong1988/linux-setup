@@ -28,8 +28,9 @@ add_text_to_file() {
 
     # Check if the target file exists
     if [[ ! -f "$target_file" ]]; then
-        echo "Error: File $target_file does not exist."
-        return 1
+        # echo "Error: File $target_file does not exist."
+        # return 1
+        sudo touch "$target_file"
     fi
 
     # Create a backup if not already created
