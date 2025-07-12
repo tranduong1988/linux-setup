@@ -49,5 +49,4 @@ nvim
 fastfetch
 visual-studio-code-bin
 google-chrome
-goenv
 starship

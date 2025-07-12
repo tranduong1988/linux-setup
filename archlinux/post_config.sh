@@ -54,11 +54,6 @@ echo "config pyenv..."
 add_text_to_file "
 eval \"\$(pyenv init -)\"" ~/.bashrc
 
-# goenv
-echo "config goenv..."
-add_text_to_file "
-eval \"\$(goenv init -)\"" ~/.bashrc
-
 # nvm 
 echo "config nvm..."
 add_text_to_file "
