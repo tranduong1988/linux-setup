@@ -45,5 +45,7 @@ reflector
 nvim
 fastfetch
 starship
+tldr
+man-db
 visual-studio-code-bin
 google-chrome

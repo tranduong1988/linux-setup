@@ -27,3 +27,4 @@ texstudio
 rofi
 starship
 pyenv
+man-db
