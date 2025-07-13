@@ -1,9 +1,6 @@
 mesa 
 intel-media-driver 
 vulkan-intel
-nvidia-lts 
-nvidia-utils 
-nvidia-prime
 libva-utils
 noto-fonts  
 noto-fonts-cjk 
@@ -47,6 +44,6 @@ xfce4-systemload-plugin
 reflector
 nvim
 fastfetch
+starship
 visual-studio-code-bin
 google-chrome
-starship
