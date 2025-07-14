@@ -3,6 +3,11 @@
 source utils.sh
 
 AUR_HELPER=$(get_aur_helper)
+if [ -z "$AUR_HELPER" ]; then
+    echo 'Can not find AUR_HELPER...'
+    exit 0
+fi
+
 sudo pacman -S --noconfirm timeshift
 sudo pacman -S --noconfirm grub-btrfs 
 sudo pacman -S --noconfirm inotify-tools

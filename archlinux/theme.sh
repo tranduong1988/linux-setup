@@ -2,8 +2,11 @@
 
 source utils.sh
 
-# Install AUR helper if not found
 AUR_HELPER=$(get_aur_helper)
+if [ -z "$AUR_HELPER" ]; then
+    echo 'Can not find AUR_HELPER...'
+    exit 0
+fi
 
 $AUR_HELPER -S --mflags --skipinteg --noconfirm --needed papirus-icon-theme matcha-gtk-theme
 

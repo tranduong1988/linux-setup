@@ -12,7 +12,9 @@ get_aur_helper() {
         cd $current
         rm -rf /tmp/yay
         AUR_HELPER=$(command -v yay)
+        echo 'AUR_HELPER is $AUR_HELPER'
     fi
+    
     echo $AUR_HELPER
 }
 
