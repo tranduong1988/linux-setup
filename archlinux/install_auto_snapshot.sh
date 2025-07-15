@@ -19,10 +19,6 @@ timeshift_autosnap_file='/etc/timeshift-autosnap.conf'
 find_and_replace "updateGrub=true" "updateGrub=false" $timeshift_autosnap_file
 find_and_replace "maxSnapshots=3" "maxSnapshots=5" $timeshift_autosnap_file
 
-# Remove pacman db lock
-sudo cp pacman-db-unlock.service /etc/systemd/system/
-sudo systemctl enable pacman-db-unlock
-
 # edit file grub-btrfsd
 sudo systemctl enable grub-btrfsd
 sudo systemctl start grub-btrfsd
