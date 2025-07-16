@@ -44,7 +44,8 @@ xfce4-systemload-plugin
 reflector
 nvim
 fastfetch
-starship
+zsh
+fzf
 tldr
 man-db
 visual-studio-code-bin

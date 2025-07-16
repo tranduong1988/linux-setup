@@ -44,31 +44,8 @@ export XMODIFIERS=@im=fcitx
 export INPUT_METHOD=fcitx
 export Fcitx5_IM_BYPASS=1" /etc/profile
 
-
-# local user
-
-# pyenv
-echo "config pyenv..."
-add_text_to_file "
-eval \"\$(pyenv init -)\"" ~/.bashrc
-
-# nvm 
-echo "config nvm..."
-add_text_to_file "
-[ -z \"$NVM_DIR\" ] && export NVM_DIR=\"\$HOME/.nvm\"
-source /usr/share/nvm/nvm.sh
-source /usr/share/nvm/bash_completion" ~/.bashrc
-
-# starship
-echo "config starship..."
-add_text_to_file "
-eval \"\$(starship init bash)\"" ~/.bashrc
-# starship preset tokyo-night -o ~/.config/starship.toml
-
 # rofi
 echo "config rofi..."
 xfconf-query -c xfce4-keyboard-shortcuts -p "/commands/custom/<Super>m" -t string -s "rofi -show drun -show-icons" --create
-# mkdir ~/.config/rofi
-# curl https://raw.githubusercontent.com/dracula/rofi/master/theme/config1.rasi -o ~/.config/rofi/config.rasi
 
 

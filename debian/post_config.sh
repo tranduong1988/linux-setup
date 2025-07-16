@@ -45,26 +45,6 @@ export XMODIFIERS=@im=fcitx
 export INPUT_METHOD=fcitx
 export Fcitx5_IM_BYPASS=1" /etc/profile
 
-
-# local user
-
-# pyenv
-echo "config pyenv..."
-add_text_to_file "
-eval \"\$(pyenv init -)\"" ~/.bashrc
-
-# goenv
-echo "config goenv..."
-add_text_to_file "
-export GOENV_ROOT=\"\$HOME/.goenv\"
-export PATH=\"\$GOENV_ROOT/bin:\$PATH\"
-eval \"\$(goenv init -)\"" ~/.bashrc
-
-# starship
-echo "config starship..."
-add_text_to_file "
-eval \"\$(starship init bash)\"" ~/.bashrc
-
 # rofi
 echo "config rofi..."
 xfconf-query -c xfce4-keyboard-shortcuts -p "/commands/custom/<Super>m" -t string -s "rofi -show drun -show-icons" --create

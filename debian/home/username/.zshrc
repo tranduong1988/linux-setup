@@ -33,7 +33,7 @@ zinit snippet OMZP::git
 zinit snippet OMZP::nvm
 # zinit snippet OMZP::pyenv
 zinit snippet OMZP::sudo
-zinit snippet OMZP::archlinux
+zinit snippet OMZP::debian
 zinit snippet OMZP::command-not-found
 
 # Load completions

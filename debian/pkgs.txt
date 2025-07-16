@@ -25,6 +25,6 @@ systemd-zram-generator
 lxpolkit
 texstudio
 rofi
-starship
-pyenv
+zsh
+fzf
 man-db
