@@ -2,7 +2,7 @@
 
 static=static-$1
 link=$1
-volatile=/dev/shm/$1-$USER
+volatile=/dev/shm/profile-$1-$USER
 
 IFS=
 set -efu
