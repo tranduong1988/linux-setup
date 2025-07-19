@@ -72,7 +72,8 @@ zstyle ':omz:plugins:nvm' silent-autoload yes # optionally remove the output gen
 
 # Alias
 alias ls='ls --color'
-
+alias pip='pip --no-cache-dir'
+alias update-chrome-profile='$HOME/.local/bin/browser-sync.sh google-chrome'
 
 # Shell integrations
 eval "$(fzf --zsh)"
