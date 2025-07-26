@@ -39,7 +39,10 @@ sudo apt install code
 # Install NVM (Node Version Manager)
 # This will install NVM and set it up for the current user
 echo "Installing NVM..."
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+LASTEST_VERSION=$(curl -s https://api.github.com/repos/nvm-sh/nvm/releases/latest \
+    | grep tag_name \
+    | cut -d '"' -f 4)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$LASTEST_VERSION/install.sh | bash
 
 # Docker
 # Add Docker's official GPG key:
