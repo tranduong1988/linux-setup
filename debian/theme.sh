@@ -2,36 +2,57 @@
 
 source utils.sh
 
-ICON_URL=$(curl -s https://api.github.com/repos/PapirusDevelopmentTeam/papirus-icon-theme/releases/latest \
-    | grep tarball_url \
-    | cut -d '"' -f 4)
-
-if [ ! -z "$ICON_URL" ]; then
-    ICON_TEMP=$(mktemp -d)
-    mkdir -p $ICON_TEMP
-    curl -L $ICON_URL | tar -xzf - -C $ICON_TEMP --strip-components=1
-    current=$(pwd)
-    cd $ICON_TEMP
-    ./install.sh
-    cd $current
+# Install papirus icon theme
+if [ -d /usr/share/icons ] && ls /usr/share/icons | grep -iq papirus; then
+    echo "✅ Papirus icon theme is installed (system-wide)"
+elif [ -d $HOME/.icons ] && ls $HOME/.icons | grep -iq papirus; then
+    echo "✅ Papirus icon theme is installed (user local)"
+elif [ -d $HOME/.local/share/icons ] && ls $HOME/.local/share/icons | grep -iq papirus; then
+    echo "✅ Papirus icon theme is installed (user local)"
+else
+    ICON_URL=$(curl -s https://api.github.com/repos/PapirusDevelopmentTeam/papirus-icon-theme/releases/latest \
+            | grep tarball_url \
+            | cut -d '"' -f 4)
+    if [ ! -z "$ICON_URL" ]; then
+        ICON_TEMP=$(mktemp -d)
+        mkdir -p $ICON_TEMP
+        curl -L $ICON_URL | tar -xzf - -C $ICON_TEMP --strip-components=1
+        current=$(pwd)
+        cd $ICON_TEMP
+        ./install.sh
+        cd $current
+        echo "Papirus icon theme installed successfully."
+    else
+        echo "Papirus icon theme not installed. No .tar.xz file found in latest release."
+    fi
 fi
 
-THEME_URL=$(curl -s https://api.github.com/repos/vinceliuice/Matcha-gtk-theme/releases/latest \
-    | grep tarball_url \
-    | cut -d '"' -f 4)
-
-if [ ! -z "$THEME_URL" ]; then
-    THEME_TEMP=$(mktemp -d)
-    mkdir -p $THEME_TEMP
-    curl -L $THEME_URL | tar -xzf - -C $THEME_TEMP --strip-components=1
-    current=$(pwd)
-    cd $THEME_TEMP
-    ./install.sh
-    cd $current
+# Install matcha theme
+if [ -d /usr/share/themes ] && ls /usr/share/themes | grep -iq matcha; then
+    echo "✅ Matcha theme is installed (system-wide)"
+elif [ -d $HOME/.themes ] && ls $HOME/.themes | grep -iq matcha; then
+    echo "✅ Matcha theme is installed (user local)"
+elif [ -d $HOME/.local/share/themes ] && ls $HOME/.local/share/themes | grep -iq matcha; then
+    echo "✅ Matcha theme is installed (user local)"
+else
+    THEME_URL=$(curl -s https://api.github.com/repos/vinceliuice/Matcha-gtk-theme/releases/latest \
+        | grep tarball_url \
+        | cut -d '"' -f 4)
+    if [ ! -z "$THEME_URL" ]; then
+        THEME_TEMP=$(mktemp -d)
+        mkdir -p $THEME_TEMP
+        curl -L $THEME_URL | tar -xzf - -C $THEME_TEMP --strip-components=1
+        current=$(pwd)
+        cd $THEME_TEMP
+        ./install.sh
+        cd $current
+        echo "Matcha theme installed successfully."
+    else
+        echo "Matcha theme not installed. No .tar.xz file found in latest release."
+    fi
 fi
 
 FONT_DIR=$HOME/.local/share/fonts
-
 FONT_NAME="JetBrainsMono Nerd Font Mono"
 if fc-list :family | grep -iq "$FONT_NAME"; then
     printf "Font '%s' is installed.\n" "$FONT_NAME"
@@ -44,7 +65,7 @@ else
         curl -L $FONT_URL | tar -xJf - -C $FONT_DIR/$FONT_NAME "JetBrainsMonoNerdFontMono-Regular.ttf"
         printf "'%s' installed successfully.\n" "$FONT_NAME"
     else
-        printf "Font '%s' not installed. No .tar.xz file found in latest release"
+        printf "Font '%s' not installed. No .tar.xz file found in latest release.\n" "$FONT_NAME"
     fi
 fi
 
@@ -63,7 +84,7 @@ else
         rm -rf "${TEMP_DIR}"
         printf "'%s' installed successfully.\n" "$FONT_NAME"
     else
-        printf "Font '%s' not installed. No .zip file found in latest release"
+        printf "Font '%s' not installed. No .zip file found in latest release.\n" "$FONT_NAME"
     fi
 fi
 fc-cache -fv

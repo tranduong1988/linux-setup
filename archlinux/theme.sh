@@ -24,7 +24,7 @@ else
         curl -L $FONT_URL | tar -xJf - -C $FONT_DIR/$FONT_NAME "JetBrainsMonoNerdFontMono-Regular.ttf"
         printf "'%s' installed successfully.\n" "$FONT_NAME"
     else
-        printf "Font '%s' not installed. No .tar.xz file found in latest release"
+        printf "Font '%s' not installed. No .tar.xz file found in latest release.\n" "$FONT_NAME"
     fi
 fi
 
@@ -43,7 +43,7 @@ else
         rm -rf "${TEMP_DIR}"
         printf "'%s' installed successfully.\n" "$FONT_NAME"
     else
-        printf "Font '%s' not installed. No .zip file found in latest release"
+        printf "Font '%s' not installed. No .zip file found in latest release.\n" "$FONT_NAME"
     fi
 fi
 fc-cache -fv
