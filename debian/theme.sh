@@ -2,22 +2,33 @@
 
 source utils.sh
 
-ICON_TEMP=$(mktemp -d)
-mkdir -p $ICON_TEMP
-curl -L https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/archive/refs/tags/20250501.tar.gz | tar -xzf - -C $ICON_TEMP --strip-components=1
-current=$(pwd)
-cd $ICON_TEMP
-./install.sh
-cd $current
+ICON_URL=$(curl -s https://api.github.com/repos/PapirusDevelopmentTeam/papirus-icon-theme/releases/latest \
+    | grep tarball_url \
+    | cut -d '"' -f 4)
 
-THEME_TEMP=$(mktemp -d)
-mkdir -p $THEME_TEMP
-curl -L https://github.com/vinceliuice/Matcha-gtk-theme/archive/refs/tags/2025-04-11.tar.gz | tar -xzf - -C $THEME_TEMP --strip-components=1
-current=$(pwd)
-cd $THEME_TEMP
-./install.sh
-cd $current
+if [ ! -z "$ICON_URL" ]; then
+    ICON_TEMP=$(mktemp -d)
+    mkdir -p $ICON_TEMP
+    curl -L $ICON_URL | tar -xzf - -C $ICON_TEMP --strip-components=1
+    current=$(pwd)
+    cd $ICON_TEMP
+    ./install.sh
+    cd $current
+fi
 
+THEME_URL=$(curl -s https://api.github.com/repos/vinceliuice/Matcha-gtk-theme/releases/latest \
+    | grep tarball_url \
+    | cut -d '"' -f 4)
+
+if [ ! -z "$THEME_URL" ]; then
+    THEME_TEMP=$(mktemp -d)
+    mkdir -p $THEME_TEMP
+    curl -L $THEME_URL | tar -xzf - -C $THEME_TEMP --strip-components=1
+    current=$(pwd)
+    cd $THEME_TEMP
+    ./install.sh
+    cd $current
+fi
 
 FONT_DIR=$HOME/.local/share/fonts
 
