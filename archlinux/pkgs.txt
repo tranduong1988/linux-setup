@@ -84,6 +84,8 @@ ristretto
 thunar-archive-plugin
 thunar-media-tags-plugin
 # app
+curl
+wget
 sysstat
 htop
 btop

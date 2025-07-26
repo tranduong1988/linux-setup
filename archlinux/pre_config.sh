@@ -42,16 +42,6 @@ if [ -n "$AUR_TOOL_NAME" ]; then
     systemctl --user restart cache2ram@$AUR_TOOL_NAME.service
 fi
 
-echo "create home folder..."
-cp -r .config $HOME/
-mkdir -p $HOME/Desktop
-mkdir -p $HOME/Downloads
-mkdir -p $HOME/Documents
-mkdir -p $HOME/Music
-mkdir -p $HOME/Pictures
-mkdir -p $HOME/Templates
-mkdir -p $HOME/Videos
-
 # set vm.swappiness=10
 echo 'Set vm.swappiness=10'
 add_text_to_file "

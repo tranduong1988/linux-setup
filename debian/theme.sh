@@ -2,30 +2,60 @@
 
 source utils.sh
 
-ICON_PATH=/tmp/icon
-mkdir -p $ICON_PATH
-curl -L https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/archive/refs/tags/20250501.tar.gz | tar -xzf - -C $ICON_PATH --strip-components=1
+ICON_TEMP=$(mktemp -d)
+mkdir -p $ICON_TEMP
+curl -L https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/archive/refs/tags/20250501.tar.gz | tar -xzf - -C $ICON_TEMP --strip-components=1
 current=$(pwd)
-cd $ICON_PATH
+cd $ICON_TEMP
 ./install.sh
 cd $current
 
-THEME_PATH=/tmp/theme
-mkdir -p $THEME_PATH
-curl -L https://github.com/vinceliuice/Matcha-gtk-theme/archive/refs/tags/2025-04-11.tar.gz | tar -xzf - -C $THEME_PATH --strip-components=1
+THEME_TEMP=$(mktemp -d)
+mkdir -p $THEME_TEMP
+curl -L https://github.com/vinceliuice/Matcha-gtk-theme/archive/refs/tags/2025-04-11.tar.gz | tar -xzf - -C $THEME_TEMP --strip-components=1
 current=$(pwd)
-cd $THEME_PATH
+cd $THEME_TEMP
 ./install.sh
 cd $current
 
 
-FONTS_PATH=$HOME/.local/share/fonts
-mkdir -p $FONTS_PATH
-curl -L https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.tar.xz | tar -xJf - -C $FONTS_PATH "JetBrainsMonoNerdFontMono-Regular.ttf"
-curl -L https://github.com/rsms/inter/releases/download/v4.1/Inter-4.1.zip -o /tmp/Inter-4.1.zip
-unzip -j /tmp/Inter-4.1.zip "extras/ttf/InterDisplay-Regular.ttf" -d $FONTS_PATH
+FONT_DIR=$HOME/.local/share/fonts
+
+FONT_NAME="JetBrainsMono Nerd Font Mono"
+if fc-list :family | grep -iq "$FONT_NAME"; then
+    printf "Font '%s' is installed.\n" "$FONT_NAME"
+else
+    FONT_URL=$(curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest \
+        | grep "browser_download_url.*JetBrainsMono.tar.xz" \
+        | cut -d '"' -f 4)
+    if [ ! -z "$FONT_URL" ]; then
+        mkdir -p $FONT_DIR/$FONT_NAME
+        curl -L $FONT_URL | tar -xJf - -C $FONT_DIR/$FONT_NAME "JetBrainsMonoNerdFontMono-Regular.ttf"
+        printf "'%s' installed successfully.\n" "$FONT_NAME"
+    else
+        printf "Font '%s' not installed. No .tar.xz file found in latest release"
+    fi
+fi
+
+FONT_NAME="Inter Display"
+if fc-list :family | grep -iq "$FONT_NAME"; then
+    printf "Font '%s' is installed.\n" "$FONT_NAME"
+else
+    FONT_URL=$(curl -s https://api.github.com/repos/rsms/inter/releases/latest \
+        | grep "browser_download_url.*\\.zip" \
+        | cut -d '"' -f 4)
+    if [ ! -z "$FONT_URL" ]; then
+        TEMP_DIR=$(mktemp -d)
+        curl -L $FONT_URL -o "$TEMP_DIR"/"$FONT_NAME".zip
+        mkdir -p $FONT_DIR/$FONT_NAME
+        unzip -j "$TEMP_DIR"/"$FONT_NAME".zip "extras/ttf/InterDisplay-Regular.ttf" -d $FONT_DIR/$FONT_NAME
+        rm -rf "${TEMP_DIR}"
+        printf "'%s' installed successfully.\n" "$FONT_NAME"
+    else
+        printf "Font '%s' not installed. No .zip file found in latest release"
+    fi
+fi
 fc-cache -fv
-
 
 xfconf-query -c xsettings -p /Net/ThemeName -s "Matcha-dark-sea" --create -t string
 xfconf-query -c xsettings -p /Net/IconThemeName -s "Papirus-Dark" --create -t string

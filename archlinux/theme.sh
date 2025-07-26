@@ -10,13 +10,43 @@ fi
 
 $AUR_HELPER -S --mflags --skipinteg --noconfirm --needed papirus-icon-theme matcha-gtk-theme
 
-FONTS_PATH=$HOME/.local/share/fonts
-mkdir -p $FONTS_PATH
-curl -L https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.tar.xz | tar -xJf - -C $FONTS_PATH "JetBrainsMonoNerdFontMono-Regular.ttf"
-curl -L https://github.com/rsms/inter/releases/download/v4.1/Inter-4.1.zip -o /tmp/Inter-4.1.zip
-unzip -j /tmp/Inter-4.1.zip "extras/ttf/InterDisplay-Regular.ttf" -d $FONTS_PATH
-fc-cache -fv
+FONT_DIR=$HOME/.local/share/fonts
 
+FONT_NAME="JetBrainsMono Nerd Font Mono"
+if fc-list :family | grep -iq "$FONT_NAME"; then
+    printf "Font '%s' is installed.\n" "$FONT_NAME"
+else
+    FONT_URL=$(curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest \
+        | grep "browser_download_url.*JetBrainsMono.tar.xz" \
+        | cut -d '"' -f 4)
+    if [ ! -z "$FONT_URL" ]; then
+        mkdir -p $FONT_DIR/$FONT_NAME
+        curl -L $FONT_URL | tar -xJf - -C $FONT_DIR/$FONT_NAME "JetBrainsMonoNerdFontMono-Regular.ttf"
+        printf "'%s' installed successfully.\n" "$FONT_NAME"
+    else
+        printf "Font '%s' not installed. No .tar.xz file found in latest release"
+    fi
+fi
+
+FONT_NAME="Inter Display"
+if fc-list :family | grep -iq "$FONT_NAME"; then
+    printf "Font '%s' is installed.\n" "$FONT_NAME"
+else
+    FONT_URL=$(curl -s https://api.github.com/repos/rsms/inter/releases/latest \
+        | grep "browser_download_url.*\\.zip" \
+        | cut -d '"' -f 4)
+    if [ ! -z "$FONT_URL" ]; then
+        TEMP_DIR=$(mktemp -d)
+        curl -L $FONT_URL -o "$TEMP_DIR"/"$FONT_NAME".zip
+        mkdir -p $FONT_DIR/$FONT_NAME
+        unzip -j "$TEMP_DIR"/"$FONT_NAME".zip "extras/ttf/InterDisplay-Regular.ttf" -d $FONT_DIR/$FONT_NAME
+        rm -rf "${TEMP_DIR}"
+        printf "'%s' installed successfully.\n" "$FONT_NAME"
+    else
+        printf "Font '%s' not installed. No .zip file found in latest release"
+    fi
+fi
+fc-cache -fv
 
 xfconf-query -c xsettings -p /Net/ThemeName -s "Matcha-dark-sea" --create -t string
 xfconf-query -c xsettings -p /Net/IconThemeName -s "Papirus-Dark" --create -t string
