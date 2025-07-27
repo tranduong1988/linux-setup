@@ -14,9 +14,9 @@ libva-utils
 dnsmasq
 dnsutils
 ethtool
-modemmanager # usb 3G, 4G
+# modemmanager
 networkmanager
-networkmanager-openconnect
+# networkmanager-openconnect
 networkmanager-openvpn
 nss-mdns
 openssh
