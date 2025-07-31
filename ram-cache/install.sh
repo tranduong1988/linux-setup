@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 mkdir -p $HOME/.local/bin
 cp browser-sync.sh $HOME/.local/bin

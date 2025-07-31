@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 link=$1
 volatile=/dev/shm/cache-$1-$USER

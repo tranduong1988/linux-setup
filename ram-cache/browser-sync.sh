@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 static=static-$1
 link=$1
