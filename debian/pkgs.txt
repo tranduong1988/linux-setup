@@ -21,6 +21,7 @@ virt-manager
 rsync
 build-essential
 fcitx5
+fcitx5-config-qt
 fcitx5-bamboo
 systemd-zram-generator
 lxpolkit
