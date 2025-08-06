@@ -33,4 +33,4 @@ man-db
 pass
 gnupg
 gnupg-agent
-pinentry-curses
+pinentry-gtk2
