@@ -62,7 +62,14 @@ else
         | cut -d '"' -f 4)
     if [ ! -z "$FONT_URL" ]; then
         mkdir -p $FONT_DIR/$FONT_NAME
-        curl -L $FONT_URL | tar -xJf - -C $FONT_DIR/$FONT_NAME "JetBrainsMonoNerdFontMono-Regular.ttf"
+        curl -L $FONT_URL | tar -xJf - -C $FONT_DIR/$FONT_NAME  "JetBrainsMonoNerdFont-Regular.ttf" \
+                                                                "JetBrainsMonoNerdFont-Bold.ttf" \
+                                                                "JetBrainsMonoNerdFont-BoldItalic.ttf" \
+                                                                "JetBrainsMonoNerdFont-Italic.ttf" \
+                                                                "JetBrainsMonoNerdFontMono-Regular.ttf" \
+                                                                "JetBrainsMonoNerdFontMono-Bold.ttf" \
+                                                                "JetBrainsMonoNerdFontMono-BoldItalic.ttf" \
+                                                                "JetBrainsMonoNerdFontMono-Italic.ttf"
         printf "'%s' installed successfully.\n" "$FONT_NAME"
     else
         printf "Font '%s' not installed. No .tar.xz file found in latest release.\n" "$FONT_NAME"
