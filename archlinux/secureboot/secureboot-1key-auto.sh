@@ -26,22 +26,17 @@ sudo pacman -S --noconfirm grub
 echo "Copy efi files..."
 sudo cp /usr/share/shim-signed/{shim,mm}x64.efi $esp/EFI/$bootloader_id/
 
-efi_dev=$(findmnt -no SOURCE $esp)
+esp_dev=$(findmnt -no SOURCE $esp)
 # Check if the device exists
-if lsblk "$efi_dev" &>/dev/null; then
-    LABEL="$bootloader_id (Secure Boot)"
+if lsblk "$esp_dev" &>/dev/null; then
+    LABEL="$bootloader_id-Shim"
     if efibootmgr | grep -Fq "$LABEL"; then
         echo "Boot entry '$LABEL' already exists"
     else
-        disk=$(lsblk -no pkname "$efi_dev")
-        # Extract the partition number from the device name
-        part=$(echo "$efi_dev" | grep -o '[0-9]\+$')
-        echo "Disk: /dev/$disk"
-        echo "Partition: $part"
-        sudo efibootmgr --unicode --disk /dev/$disk --part $part --create --label $LABEL --loader /EFI/$bootloader_id/shimx64.efi
+        sudo efibootmgr --unicode --disk $esp_dev --create --label $LABEL --loader /EFI/$bootloader_id/shimx64.efi
     fi
 else
-    echo "Device $efi_dev does not exist"
+    echo "Device $esp_dev does not exist"
     exit 1
 fi
 

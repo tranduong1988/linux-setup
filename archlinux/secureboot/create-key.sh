@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-KEY_DIR=$HOME/secureboot-key 
+key_dir=$HOME/secureboot-key 
 
 echo "Installing mokutil..."
 sudo pacman -S --needed --noconfirm mokutil
 
 echo "Generating Secure Boot key..."
-mkdir -p "$KEY_DIR"
-cd "$KEY_DIR"
+mkdir -p "$key_dir"
+cd "$key_dir"
 openssl req -newkey rsa:2048 -nodes -keyout MOK.key -new -x509 -sha256 -days 3650 -subj "/CN=My ArchLinux Key/" -out MOK.crt
 openssl x509 -outform DER -in MOK.crt -out MOK.cer
 
