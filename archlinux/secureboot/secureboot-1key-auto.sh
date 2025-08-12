@@ -6,7 +6,7 @@ KEY_DIR=$HOME/secureboot-key                       # Where to store Secure Boot 
 EFI_DIR=/boot/efi                              # EFI partition target directory
 BOOTLOADER_ID=arch
 echo "Installing required packages..."
-sudo pacman -S --needed --noconfirm grub efibootmgr sbsigntools mokutil
+sudo pacman -S --needed --noconfirm grub efibootmgr sbsigntools
 if ! command -v yay &>/dev/null; then
     echo "Error: 'yay' is not installed. Please install yay first."
     exit 1
@@ -39,10 +39,6 @@ sudo grub-install --target=x86_64-efi --efi-directory=$EFI_DIR --bootloader-id=$
 echo "Signing GRUB and Linux kernel..."
 GRUBX64_FILE="$EFI_DIR/EFI/$BOOTLOADER_ID/grubx64.efi"
 sudo sbsign --key $KEY_DIR/MOK.key --cert $KEY_DIR/MOK.crt --output $GRUBX64_FILE $GRUBX64_FILE
-
-echo "Enrolling key into MOK list..."
-# mokutil will prompt for a temporary password
-sudo mokutil --import MOK.cer
 
 
 sudo mkdir -p /etc/initcpio/post/
