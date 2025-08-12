@@ -13,11 +13,6 @@ if ! command -v yay &>/dev/null; then
 fi
 yay -S --needed shim-signed
 
-
-echo "Grub-install..."
-GRUB_MODULES="ext2 fat part_gpt part_msdos linux search search_fs_uuid search_fs_file search_label normal efinet all_video boot btrfs cat chain configfile echo efifwsetup efinet ext2 fat font gettext gfxmenu gfxterm gfxterm_background gzio halt help hfsplus iso9660 jpeg keystatus loadenv loopback linux ls lsefi lsefimmap lsefisystab lssal memdisk minicmd normal ntfs part_apple part_msdos part_gpt password_pbkdf2 png probe reboot regexp search search_fs_uuid search_fs_file search_label serial sleep smbios squash4 test tpm true video xfs zfs zfscrypt zfsinfo cpuid play cryptodisk gcry_arcfour gcry_blowfish gcry_camellia gcry_cast5 gcry_crc gcry_des gcry_dsa gcry_idea gcry_md4 gcry_md5 gcry_rfc2268 gcry_rijndael gcry_rmd160 gcry_rsa gcry_seed gcry_serpent gcry_sha1 gcry_sha256 gcry_sha512 gcry_tiger gcry_twofish gcry_whirlpool luks lvm mdraid09 mdraid1x raid5rec raid6rec http tftp"
-sudo grub-install --target=x86_64-efi --efi-directory=$EFI_DIR --bootloader-id=$BOOTLOADER_ID --modules="$GRUB_MODULES" --sbat /usr/share/grub/sbat.csv --no-nvram
-
 echo "Copy efi files..."
 sudo cp /usr/share/shim-signed/shimx64.efi $EFI_DIR/EFI/$BOOTLOADER_ID/BOOTx64.EFI
 sudo cp /usr/share/shim-signed/mmx64.efi $EFI_DIR/EFI/$BOOTLOADER_ID/
@@ -37,22 +32,22 @@ else
     exit 1
 fi
 
-
-echo "Generating Secure Boot key..."
-mkdir -p "$KEY_DIR"
-cd "$KEY_DIR"
-openssl req -newkey rsa:2048 -nodes -keyout MOK.key -new -x509 -sha256 -days 3650 -subj "/CN=My ArchLinux Key/" -out MOK.crt
-openssl x509 -outform DER -in MOK.crt -out MOK.cer
+echo "Grub-install..."
+GRUB_MODULES="ext2 fat part_gpt part_msdos linux search search_fs_uuid search_fs_file search_label normal efinet all_video boot btrfs cat chain configfile echo efifwsetup efinet ext2 fat font gettext gfxmenu gfxterm gfxterm_background gzio halt help hfsplus iso9660 jpeg keystatus loadenv loopback linux ls lsefi lsefimmap lsefisystab lssal memdisk minicmd normal ntfs part_apple part_msdos part_gpt password_pbkdf2 png probe reboot regexp search search_fs_uuid search_fs_file search_label serial sleep smbios squash4 test tpm true video xfs zfs zfscrypt zfsinfo cpuid play cryptodisk gcry_arcfour gcry_blowfish gcry_camellia gcry_cast5 gcry_crc gcry_des gcry_dsa gcry_idea gcry_md4 gcry_md5 gcry_rfc2268 gcry_rijndael gcry_rmd160 gcry_rsa gcry_seed gcry_serpent gcry_sha1 gcry_sha256 gcry_sha512 gcry_tiger gcry_twofish gcry_whirlpool luks lvm mdraid09 mdraid1x raid5rec raid6rec http tftp"
+sudo grub-install --target=x86_64-efi --efi-directory=$EFI_DIR --bootloader-id=$BOOTLOADER_ID --modules="$GRUB_MODULES" --sbat /usr/share/grub/sbat.csv --no-nvram
 
 echo "Signing GRUB and Linux kernel..."
-sbsign --key MOK.key --cert MOK.crt --output /boot/vmlinuz-linux /boot/vmlinuz-linux
-sbsign --key MOK.key --cert MOK.crt --output $EFI_DIR/grubx64.efi $EFI_DIR/grubx64.efi
+GRUBX64_FILE="$EFI_DIR/EFI/$BOOTLOADER_ID/grubx64.efi"
+sudo sbsign --key $KEY_DIR/MOK.key --cert $KEY_DIR/MOK.crt --output $GRUBX64_FILE $GRUBX64_FILE
 
 echo "Enrolling key into MOK list..."
 # mokutil will prompt for a temporary password
 sudo mokutil --import MOK.cer
 
+
 sudo mkdir -p /etc/initcpio/post/
 sudo cp kernel-sbsign /etc/initcpio/post/
-sudo sed -i "s|/path/to|$HOME/secureboot_key|g" /etc/initcpio/post/kernel-sbsign
+sudo sed -i "s|/path/to|$KEY_DIR|g" /etc/initcpio/post/kernel-sbsign
 sudo chmod +x /etc/initcpio/post/kernel-sbsign
+
+sudo mkinitcpio -P
