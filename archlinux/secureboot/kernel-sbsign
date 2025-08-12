@@ -6,7 +6,15 @@ kernel="$1"
 # use already installed kernel if it exists
 [[ ! -f "$KERNELDESTINATION" ]] || kernel="$KERNELDESTINATION"
 
-keypairs=(/path/to/MOK.key /path/to/MOK.crt)
+conf="/etc/secureboot.conf"
+if [ -f $conf ]; then 
+	source $conf
+else
+	echo "conf not found at $conf"
+	exit 1
+fi
+
+keypairs=($mok_key $mok_crt)
 
 for (( i=0; i<${#keypairs[@]}; i+=2 )); do
     key="${keypairs[$i]}" cert="${keypairs[(( i + 1 ))]}"
