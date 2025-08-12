@@ -7,4 +7,4 @@ Target = grub
 [Action]
 Description = Reinstalling GRUB to EFI system partition...
 When = PostTransaction
-Exec = /bin/sh -c "/usr/bin/grub-install && /usr/bin/grub-mkconfig -o /boot/grub/grub.cfg"
+Exec = /usr/local/bin/grub-sbsign

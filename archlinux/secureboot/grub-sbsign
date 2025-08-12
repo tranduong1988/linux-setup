@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+EFI_DIR=$1                           
+BOOTLOADER_ID=$2
+KEY_DIR=$3
+
+echo "Grub-install..."
+GRUB_MODULES="ext2 fat part_gpt part_msdos linux search search_fs_uuid search_fs_file search_label normal efinet all_video boot btrfs cat chain configfile echo efifwsetup efinet ext2 fat font gettext gfxmenu gfxterm gfxterm_background gzio halt help hfsplus iso9660 jpeg keystatus loadenv loopback linux ls lsefi lsefimmap lsefisystab lssal memdisk minicmd normal ntfs part_apple part_msdos part_gpt password_pbkdf2 png probe reboot regexp search search_fs_uuid search_fs_file search_label serial sleep smbios squash4 test tpm true video xfs zfs zfscrypt zfsinfo cpuid play cryptodisk gcry_arcfour gcry_blowfish gcry_camellia gcry_cast5 gcry_crc gcry_des gcry_dsa gcry_idea gcry_md4 gcry_md5 gcry_rfc2268 gcry_rijndael gcry_rmd160 gcry_rsa gcry_seed gcry_serpent gcry_sha1 gcry_sha256 gcry_sha512 gcry_tiger gcry_twofish gcry_whirlpool luks lvm mdraid09 mdraid1x raid5rec raid6rec http tftp"
+grub-install --target=x86_64-efi --efi-directory=$EFI_DIR --bootloader-id=$BOOTLOADER_ID --modules="$GRUB_MODULES" --sbat /usr/share/grub/sbat.csv --no-nvram
+
+echo "Signing grub..."
+grub_efi="$EFI_DIR/EFI/$BOOTLOADER_ID/grubx64.efi"
+
+if [ ! -f "$grub_efi" ]; then
+  echo "Error: $grub_efi not found" >&2
+  exit 1
+fi
+
+keypairs=($KEY_DIR/MOK.key $KEY_DIR/MOK.crt)
+
+for (( i=0; i<${#keypairs[@]}; i+=2 )); do
+    key="${keypairs[$i]}" cert="${keypairs[(( i + 1 ))]}"
+    if ! sbverify --cert "$cert" "$grub_efi" &>/dev/null; then
+        sbsign --key "$key" --cert "$cert" --output "$grub_efi" "$grub_efi"
+    fi
+done
+
+grub-mkconfig -o /boot/grub/grub.cfg
