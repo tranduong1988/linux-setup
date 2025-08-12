@@ -40,7 +40,13 @@ if lsblk "$EFI_DEV" &>/dev/null; then
     part=$(echo "$EFI_DEV" | grep -o '[0-9]\+$')
     echo "Disk: /dev/$disk"
     echo "Partition: $part"
-    sudo efibootmgr --unicode --disk /dev/$disk --part $part --create --label "Arch-shim" --loader /EFI/$BOOTLOADER_ID/BOOTX64.EFI
+
+    LABEL="Arch-shim"
+    if efibootmgr | grep -Fq "$LABEL"; then
+        echo "Boot entry '$LABEL' already exists"
+    else
+        sudo efibootmgr --unicode --disk /dev/$disk --part $part --create --label $LABEL --loader /EFI/$BOOTLOADER_ID/BOOTX64.EFI
+    fi
 else
     echo "Device $EFI_DEV does not exist"
     exit 1
